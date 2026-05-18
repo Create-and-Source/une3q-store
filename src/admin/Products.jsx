@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Plus, Pencil, Trash2, X, Upload, GripVertical, Image as ImageIcon, Eye, EyeOff, Star } from 'lucide-react'
+import { Plus, Pencil, Trash2, X, Upload, Image as ImageIcon, Star, Package } from 'lucide-react'
 import { supabase } from '../lib/supabase'
 
 const EMPTY = { name: '', slug: '', description: '', price: '', compare_at_price: '', category_id: '', status: 'draft', featured: false, weight_oz: '', sku: '', inventory_count: 0 }
