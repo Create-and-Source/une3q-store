@@ -75,14 +75,21 @@ export default function Products() {
       const file = images[i]
       const ext = file.name.split('.').pop()
       const path = `${productId}/${Date.now()}-${i}.${ext}`
-      const { error } = await supabase.storage.from('product-images').upload(path, file)
-      if (!error) {
-        const { data: { publicUrl } } = supabase.storage.from('product-images').getPublicUrl(path)
-        uploaded.push({ product_id: productId, url: publicUrl, sort_order: existingImages.length + i })
+      const { error } = await supabase.storage.from('product-images').upload(path, file, { upsert: true })
+      if (error) {
+        console.error('Storage upload error:', error)
+        alert(`Image upload failed: ${error.message}`)
+        continue
       }
+      const { data: { publicUrl } } = supabase.storage.from('product-images').getPublicUrl(path)
+      uploaded.push({ product_id: productId, url: publicUrl, sort_order: existingImages.length + i })
     }
     if (uploaded.length > 0) {
-      await supabase.from('product_images').insert(uploaded)
+      const { error: dbErr } = await supabase.from('product_images').insert(uploaded)
+      if (dbErr) {
+        console.error('DB insert error:', dbErr)
+        alert(`Failed to save image records: ${dbErr.message}`)
+      }
     }
   }
 
