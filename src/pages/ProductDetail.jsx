@@ -104,9 +104,6 @@ export default function ProductDetail() {
               <p className="text-[#12345f] text-lg leading-relaxed mb-8">{product.description}</p>
             )}
 
-            {product.sku && (
-              <p className="text-sm text-[#12345f]/60 mb-6">SKU: {product.sku}</p>
-            )}
 
             <div className="flex items-center gap-4 mb-6">
               <div className="flex items-center border border-[#d9c8a6] rounded-full overflow-hidden">
