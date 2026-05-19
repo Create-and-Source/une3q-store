@@ -1,1 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Inter:wght@400;500;600;700;800;900&display=swap');
+
 @import "tailwindcss";
+
+@theme {
+  --color-navy: #071f47;
+  --color-navy-light: #0a2d63;
+  --color-navy-deep: #04132e;
+  --color-royal: #063c86;
+  --color-purple: #7a1fad;
+  --color-purple-light: #9b3fd4;
+  --color-purple-deep: #5a0f82;
+  --color-lime: #a7c900;
+  --color-lime-light: #c4e530;
+  --color-gold: #c9a84c;
+  --color-gold-light: #e0c87a;
+  --color-cream: #f3eadb;
+  --color-cream-dark: #e8dbc5;
+  --color-warm: #f8f3eb;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+* {
+  font-family: var(--font-body);
+}
+
+/* Artistic brushstroke decoration */
+.brushstroke {
+  position: relative;
+}
+.brushstroke::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-lime) 15%, var(--color-purple) 50%, var(--color-royal) 85%, transparent 100%);
+  border-radius: 3px;
+  opacity: 0.8;
+}
+
+/* Gold decorative line */
+.gold-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), var(--color-gold-light), var(--color-gold), transparent);
+}
+
+/* Painterly gradient background */
+.paint-bg {
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 80%, rgba(122, 31, 173, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(6, 60, 134, 0.2) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 30% at 50% 50%, rgba(167, 201, 0, 0.08) 0%, transparent 50%);
+}
+
+/* Textured cream background */
+.cream-textured {
+  background-color: var(--color-cream);
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(122, 31, 173, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 30%, rgba(6, 60, 134, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(167, 201, 0, 0.03) 0%, transparent 50%);
+}
+
+/* Artistic card hover */
+.art-card {
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.art-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(7, 31, 71, 0.2), 0 0 0 1px rgba(201, 168, 76, 0.3);
+}
+
+/* Gold border accent */
+.gold-border {
+  border: 1px solid rgba(201, 168, 76, 0.3);
+}
+.gold-border:hover {
+  border-color: rgba(201, 168, 76, 0.6);
+}
+
+/* Dramatic section divider */
+.paint-divider {
+  height: 4px;
+  background: linear-gradient(90deg,
+    var(--color-purple) 0%,
+    var(--color-royal) 25%,
+    var(--color-lime) 50%,
+    var(--color-royal) 75%,
+    var(--color-purple) 100%
+  );
+  opacity: 0.6;
+}
+
+/* Artistic splash behind elements */
+.splash {
+  position: relative;
+}
+.splash::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(122, 31, 173, 0.3) 0%, transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(6, 60, 134, 0.3) 0%, transparent 40%),
+    radial-gradient(circle at 50% 30%, rgba(167, 201, 0, 0.2) 0%, transparent 30%);
+  filter: blur(20px);
+  z-index: -1;
+}
+
+/* Animated gold shimmer */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.gold-shimmer {
+  background: linear-gradient(90deg, var(--color-gold) 0%, var(--color-gold-light) 40%, #fff 50%, var(--color-gold-light) 60%, var(--color-gold) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Purple glow effect */
+.purple-glow {
+  box-shadow: 0 0 40px rgba(122, 31, 173, 0.3), 0 0 80px rgba(122, 31, 173, 0.1);
+}
+
+/* Scroll-triggered fade in */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Font utility classes */
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-navy-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-purple);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-purple-light);
+}
+
+/* Selection color */
+::selection {
+  background: rgba(122, 31, 173, 0.3);
+  color: white;
+}
