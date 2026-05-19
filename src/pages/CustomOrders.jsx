@@ -24,11 +24,11 @@ export default function CustomOrders() {
         <div className="relative z-10 max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <span className="badge-painted mb-4">Custom Made</span>
-            <h1 className="font-display text-4xl md:text-6xl font-black mb-6 leading-tight mt-4 text-white" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
+            <h1 className="font-display text-4xl md:text-6xl font-black mb-6 leading-tight mt-4 text-white" style={{ textShadow: '0 3px 12px rgba(0,0,0,0.8), 0 6px 30px rgba(0,0,0,0.5)' }}>
               Made with <span className="text-painted">passion.</span><br />
               Designed to <span className="text-painted">stand out.</span>
             </h1>
-            <p className="font-script text-2xl text-white/90 mb-4 rotate-[-1deg]" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>One-on-one custom work that shows your individuality</p>
+            <p className="font-script text-2xl text-white mb-4 rotate-[-1deg]" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}>One-on-one custom work that shows your individuality</p>
             <div className="mt-8 grid grid-cols-3 gap-3">
               {[{ l: 'Handmade', i: Fingerprint, c: 'icon-painted-purple' }, { l: 'Heartfelt', i: Heart, c: 'icon-painted-blue' }, { l: 'One-of-a-Kind', i: Sun, c: 'icon-painted-lime' }].map(t => {
                 const I = t.i

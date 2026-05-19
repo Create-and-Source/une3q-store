@@ -11,8 +11,8 @@ export default function About() {
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <span className="badge-painted mb-4">About</span>
-            <h1 className="font-display text-5xl md:text-7xl font-black mt-6 text-white" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>UNE3Q</h1>
-            <p className="text-xl text-white/90 leading-relaxed max-w-2xl mx-auto mt-6" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>A creative studio dedicated to crafting unique, handmade pieces that celebrate individuality and self-expression.</p>
+            <h1 className="font-display text-5xl md:text-7xl font-black mt-6 text-white" style={{ textShadow: '0 3px 12px rgba(0,0,0,0.8), 0 6px 30px rgba(0,0,0,0.5)' }}>UNE3Q</h1>
+            <p className="text-xl text-white leading-relaxed max-w-2xl mx-auto mt-6" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}>A creative studio dedicated to crafting unique, handmade pieces that celebrate individuality and self-expression.</p>
           </motion.div>
         </div>
       </section>

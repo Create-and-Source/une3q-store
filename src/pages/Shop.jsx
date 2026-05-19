@@ -37,7 +37,7 @@ export default function Shop() {
         <img src="/textures/splat-3.png" alt="" className="paint-splat bottom-[15%] right-[10%] w-[180px]" style={{ filter: 'invert(60%) sepia(100%) saturate(400%) hue-rotate(14deg)', opacity: 0.08 }} />
         <div className="relative z-10 max-w-7xl mx-auto text-center">
           <span className="badge-painted mb-4">Shop</span>
-          <h1 className="font-display text-5xl md:text-7xl font-black text-white mt-4" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>The Collection</h1>
+          <h1 className="font-display text-5xl md:text-7xl font-black text-white mt-4" style={{ textShadow: '0 3px 12px rgba(0,0,0,0.8), 0 6px 30px rgba(0,0,0,0.5)' }}>The Collection</h1>
         </div>
       </section>
 

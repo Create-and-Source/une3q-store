@@ -58,6 +58,26 @@ body {
     linear-gradient(135deg, #071f47 0%, #0a2d63 30%, #0f1a3d 60%, #071f47 100%);
   background-blend-mode: overlay, soft-light, normal;
 }
+.hero-painted::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(4,10,28,0.45);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ============================================================
+   PAINTED DARK OVERLAY — also darken painted-dark sections
+   ============================================================ */
+.painted-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(4,10,28,0.35);
+  z-index: 1;
+  pointer-events: none;
+}
 
 /* ============================================================
    PAINTED DARK SECTION
@@ -308,8 +328,8 @@ body {
 .nav-painted {
   background:
     url('/textures/canvas-weave.jpg') repeat,
-    #f5efe4;
-  background-blend-mode: multiply, normal;
+    #faf5ec;
+  background-blend-mode: soft-light, normal;
   box-shadow: 0 3px 0 rgba(201,168,76,0.15), 0 6px 20px rgba(7,31,71,0.05);
 }
 

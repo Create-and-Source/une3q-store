@@ -18,7 +18,7 @@ export default function Nav() {
             <img src="/logo.png" alt="UNE3Q" className="h-14 w-auto group-hover:scale-105 transition-transform" />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8 font-bold uppercase text-sm tracking-wider text-navy/70">
+          <nav className="hidden md:flex items-center gap-8 font-bold uppercase text-sm tracking-wider text-navy">
             {[
               { to: '/shop', label: 'Shop' },
               { to: '/custom', label: 'Custom Orders' },

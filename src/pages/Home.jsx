@@ -59,16 +59,16 @@ export default function HomePage() {
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <div className="badge-painted mb-8">Art. Soul. Style.</div>
 
-            <h2 className="font-display text-5xl md:text-7xl lg:text-[5.5rem] font-black leading-[0.95] mb-8 text-white" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.5), 0 4px 20px rgba(7,31,71,0.4)' }}>
+            <h2 className="font-display text-5xl md:text-7xl lg:text-[5.5rem] font-black leading-[0.95] mb-8 text-white" style={{ textShadow: '0 3px 12px rgba(0,0,0,0.8), 0 6px 30px rgba(0,0,0,0.5)' }}>
               <span className="block">Creativity</span>
               <span className="block">is your</span>
               <span className="block brush-underline text-painted">superpower.</span>
             </h2>
 
-            <p className="font-script text-2xl md:text-3xl text-white mb-4 rotate-[-1deg]" style={{ textShadow: '0 2px 6px rgba(0,0,0,0.6)' }}>
+            <p className="font-script text-2xl md:text-3xl text-white mb-4 rotate-[-1deg]" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}>
               We just help you express it.
             </p>
-            <p className="text-lg text-white/90 mb-10 leading-relaxed max-w-lg" style={{ textShadow: '0 2px 6px rgba(0,0,0,0.5)' }}>
+            <p className="text-lg text-white mb-10 leading-relaxed max-w-lg" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}>
               Unique arts, handmade jewelry, and home decor — made different, made by heart.
             </p>
 
@@ -171,7 +171,7 @@ export default function HomePage() {
         <img src="/textures/splat-3.png" alt="" className="paint-splat bottom-[10%] right-[8%] w-[180px]" style={{ filter: 'invert(60%) sepia(100%) saturate(400%) hue-rotate(14deg) brightness(95%) contrast(95%)', opacity: 0.06 }} />
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-          <p className="font-script text-4xl md:text-6xl text-white/90 leading-snug" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.4)' }}>
+          <p className="font-script text-4xl md:text-6xl text-white leading-snug" style={{ textShadow: '0 3px 12px rgba(0,0,0,0.8), 0 6px 30px rgba(0,0,0,0.5)' }}>
             "Creativity is your <span className="text-painted">superpower.</span><br />
             We just help you <span className="text-painted">express it.</span>"
           </p>
@@ -262,11 +262,11 @@ export default function HomePage() {
         <div className="relative z-10 max-w-5xl mx-auto text-center px-6">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <span className="badge-painted mb-6">Custom Made</span>
-            <h2 className="font-display text-4xl md:text-7xl font-black text-white mb-6 leading-tight mt-6" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
+            <h2 className="font-display text-4xl md:text-7xl font-black text-white mb-6 leading-tight mt-6" style={{ textShadow: '0 3px 12px rgba(0,0,0,0.8), 0 6px 30px rgba(0,0,0,0.5)' }}>
               Handmade with <span className="text-painted">passion.</span><br />
               Designed to <span className="text-painted">stand out.</span>
             </h2>
-            <p className="font-script text-2xl text-white mb-10 rotate-[-1deg]" style={{ textShadow: '0 2px 6px rgba(0,0,0,0.6)' }}>
+            <p className="font-script text-2xl text-white mb-10 rotate-[-1deg]" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}>
               One-on-one custom work — jewelry, wall art, gifts, and decor
             </p>
             <Link to="/custom" className="inline-flex items-center gap-2 btn-painted-lime px-10 py-5 rounded-full font-black text-lg">
@@ -309,7 +309,7 @@ export default function HomePage() {
         <img src="/textures/splat-3.png" alt="" className="paint-splat top-[20%] left-[10%] w-[150px]" style={{ filter: 'invert(42%) sepia(93%) saturate(1352%) hue-rotate(37deg) brightness(101%) contrast(97%)', opacity: 0.06 }} />
 
         <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
-          <p className="font-display text-3xl md:text-5xl font-black text-white leading-tight mb-6" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.4)' }}>
+          <p className="font-display text-3xl md:text-5xl font-black text-white leading-tight mb-6" style={{ textShadow: '0 3px 12px rgba(0,0,0,0.8), 0 6px 30px rgba(0,0,0,0.5)' }}>
             Handmade with <span className="text-painted">passion.</span><br />
             Designed to <span className="text-painted">stand out.</span>
           </p>
