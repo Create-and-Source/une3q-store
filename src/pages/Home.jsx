@@ -18,17 +18,20 @@ export default function HomePage() {
   }, [])
 
   return (
-    <div className="min-h-screen overflow-hidden relative">
-
-      {/* Paint splatters scattered across the whole canvas */}
-      <img src="/textures/splat-1.png" alt="" className="paint-splat top-[3%] left-[2%] w-[350px] opacity-[0.08]" style={{ filter: 'invert(42%) sepia(93%) saturate(1352%) hue-rotate(37deg)' }} />
-      <img src="/textures/splat-2.png" alt="" className="paint-splat top-[15%] right-[3%] w-[280px] opacity-[0.06]" style={{ filter: 'invert(13%) sepia(96%) saturate(3861%) hue-rotate(266deg) brightness(80%)' }} />
-      <img src="/textures/splat-3.png" alt="" className="paint-splat top-[45%] left-[5%] w-[220px] opacity-[0.05]" style={{ filter: 'invert(60%) sepia(100%) saturate(400%) hue-rotate(14deg)' }} />
-      <img src="/textures/splat-4.png" alt="" className="paint-splat top-[70%] right-[6%] w-[260px] opacity-[0.06]" style={{ filter: 'invert(20%) sepia(50%) saturate(2000%) hue-rotate(200deg)' }} />
-      <img src="/textures/splat-1.png" alt="" className="paint-splat bottom-[8%] left-[10%] w-[200px] opacity-[0.04]" style={{ filter: 'invert(70%) sepia(50%) saturate(600%) hue-rotate(10deg)' }} />
+    <div className="min-h-screen overflow-hidden">
 
       {/* ===== HERO ===== */}
-      <section className="relative pt-16 pb-24 px-6">
+      <section className="relative pt-16 pb-28 px-6 overflow-hidden">
+        {/* Paint washes — soft color blobs */}
+        <div className="wash-purple" style={{ top: '-15%', left: '-10%' }} />
+        <div className="wash-blue" style={{ top: '10%', right: '-15%' }} />
+        <div className="wash-lime" style={{ bottom: '-10%', left: '20%' }} />
+        <div className="wash-gold" style={{ top: '30%', right: '30%' }} />
+
+        {/* Paint splatter accents */}
+        <img src="/textures/splat-1.png" alt="" className="paint-splat top-[5%] left-[2%] w-[300px]" style={{ filter: 'invert(42%) sepia(93%) saturate(1352%) hue-rotate(37deg)' }} />
+        <img src="/textures/splat-2.png" alt="" className="paint-splat bottom-[10%] right-[3%] w-[250px]" style={{ filter: 'invert(13%) sepia(96%) saturate(3861%) hue-rotate(266deg) brightness(80%)' }} />
+
         <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <div className="badge-painted mb-8">Art. Soul. Style.</div>
@@ -42,7 +45,7 @@ export default function HomePage() {
             <p className="font-script text-3xl md:text-4xl text-navy/80 mb-3 rotate-[-1deg]">
               We just help you express it.
             </p>
-            <p className="text-lg text-navy/70 mb-10 leading-relaxed max-w-lg">
+            <p className="text-lg text-navy/60 mb-10 leading-relaxed max-w-lg">
               Unique arts, handmade jewelry, and home decor — made different, made by heart.
             </p>
 
@@ -81,8 +84,8 @@ export default function HomePage() {
                 })}
               </div>
 
-              <div className="rounded-2xl p-5 bg-cream/60 border-2 border-gold/20">
-                <p className="font-script text-2xl text-navy/80 text-center leading-snug">
+              <div className="rounded-2xl p-5 bg-canvas border border-gold/15">
+                <p className="font-script text-2xl text-navy/70 text-center leading-snug">
                   "Every piece tells a story. Yours. Uniquely <span className="text-painted font-bold">YOU</span>."
                 </p>
               </div>
@@ -91,10 +94,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="paint-divider" />
+      <div className="max-w-7xl mx-auto px-6"><div className="paint-divider" /></div>
 
       {/* ===== CATEGORIES ===== */}
-      <section className="relative py-24 px-6">
+      <section className="relative py-24 px-6 overflow-hidden">
+        <div className="wash-purple" style={{ top: '20%', right: '-20%' }} />
+        <div className="wash-lime" style={{ bottom: '-20%', left: '-15%' }} />
+
         <div className="relative z-10 max-w-7xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
             <span className="badge-painted mb-4">Shop the Collection</span>
@@ -117,7 +123,7 @@ export default function HomePage() {
                       <Icon size={34} className={i === 2 ? 'text-navy' : 'text-white'} />
                     </div>
                     <h3 className="text-2xl font-black text-navy mb-3 group-hover:text-purple transition">{cat.name}</h3>
-                    <p className="text-navy/70 leading-relaxed">{cat.desc}</p>
+                    <p className="text-navy/60 leading-relaxed">{cat.desc}</p>
                     <div className="mt-6 inline-flex items-center gap-2 text-purple text-sm font-black uppercase tracking-wider opacity-0 group-hover:opacity-100 transition">
                       Explore <ArrowRight size={14} />
                     </div>
@@ -130,22 +136,27 @@ export default function HomePage() {
       </section>
 
       {/* ===== QUOTE BANNER ===== */}
-      <section className="relative py-16 px-6">
-        <div className="gold-line mb-10" />
+      <section className="relative py-20 px-6 overflow-hidden">
+        <div className="wash-gold" style={{ top: '0', left: '10%' }} />
+        <div className="wash-purple" style={{ bottom: '0', right: '10%' }} />
         <div className="relative z-10 max-w-4xl mx-auto text-center">
+          <div className="gold-line mb-10" />
           <p className="font-script text-5xl md:text-7xl text-navy leading-snug">
             "Creativity is your <span className="text-painted">superpower.</span>"
           </p>
-          <p className="font-script text-3xl md:text-4xl text-navy/60 mt-2">
+          <p className="font-script text-3xl md:text-4xl text-navy/50 mt-2">
             We just help you <span className="text-painted">express it.</span>
           </p>
+          <div className="gold-line mt-10" />
         </div>
-        <div className="gold-line mt-10" />
       </section>
 
       {/* ===== FEATURED PRODUCTS ===== */}
       {products.length > 0 && (
-        <section className="relative py-24 px-6">
+        <section className="relative py-24 px-6 overflow-hidden">
+          <div className="wash-blue" style={{ top: '-10%', left: '-15%' }} />
+          <div className="wash-lime" style={{ bottom: '-10%', right: '-10%' }} />
+
           <div className="relative z-10 max-w-7xl mx-auto">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
               <span className="badge-painted mb-4">Featured</span>
@@ -163,7 +174,7 @@ export default function HomePage() {
                           <img src={img} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition duration-700" />
                         </div>
                       ) : (
-                        <div className="aspect-square bg-cream flex items-center justify-center"><Gem size={48} className="text-gold/30" /></div>
+                        <div className="aspect-square bg-canvas flex items-center justify-center"><Gem size={48} className="text-gold/30" /></div>
                       )}
                       <div className="p-6">
                         <p className="text-xs font-black tracking-[0.25em] uppercase text-purple mb-1">{product.categories?.name}</p>
@@ -186,12 +197,13 @@ export default function HomePage() {
       )}
 
       {products.length === 0 && (
-        <section className="relative py-24 px-6">
+        <section className="relative py-24 px-6 overflow-hidden">
+          <div className="wash-blue" style={{ top: '-10%', left: '-15%' }} />
           <div className="relative z-10 max-w-7xl mx-auto">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
               <span className="badge-painted mb-4">Coming Soon</span>
               <h2 className="font-display text-4xl md:text-6xl font-black text-navy mt-6">Shop Opening <span className="brush-under">Soon</span></h2>
-              <p className="mt-6 text-lg max-w-2xl mx-auto text-navy/70">Handmade jewelry, unique arts, and home decor — all made different, made by heart.</p>
+              <p className="mt-6 text-lg max-w-2xl mx-auto text-navy/60">Handmade jewelry, unique arts, and home decor — all made different, made by heart.</p>
             </motion.div>
             <div className="grid md:grid-cols-3 gap-8">
               {[
@@ -206,7 +218,7 @@ export default function HomePage() {
                       <Icon className={i === 2 ? 'text-navy' : 'text-white'} size={30} />
                     </div>
                     <h3 className="text-2xl font-black text-navy mb-3">{item.title}</h3>
-                    <p className="text-navy/70 leading-relaxed">Unique pieces crafted with soul and style.</p>
+                    <p className="text-navy/60 leading-relaxed">Unique pieces crafted with soul and style.</p>
                   </div>
                 )
               })}
@@ -215,20 +227,24 @@ export default function HomePage() {
         </section>
       )}
 
-      <div className="paint-divider" />
+      <div className="max-w-7xl mx-auto px-6"><div className="paint-divider" /></div>
 
       {/* ===== CUSTOM CTA ===== */}
-      <section className="relative py-28 px-6">
+      <section className="relative py-28 px-6 overflow-hidden">
+        <div className="wash-purple" style={{ top: '0', left: '-10%' }} />
+        <div className="wash-lime" style={{ bottom: '0', right: '-10%' }} />
+        <div className="wash-gold" style={{ top: '40%', right: '20%' }} />
+
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <span className="badge-painted mb-6">Custom Made</span>
             <h2 className="font-display text-5xl md:text-8xl font-black text-navy mb-6 leading-tight mt-6">
               Handmade with <span className="text-painted">passion.</span>
             </h2>
-            <h3 className="font-display text-4xl md:text-6xl font-black text-navy/60 mb-8 leading-tight">
-              Designed to <span className="brush-under brush-under-purple">stand out.</span>
+            <h3 className="font-display text-4xl md:text-6xl font-black text-navy/50 mb-8 leading-tight">
+              Designed to <span className="brush-under brush-under-purple text-navy">stand out.</span>
             </h3>
-            <p className="font-script text-2xl text-navy/70 mb-10 rotate-[-1deg]">
+            <p className="font-script text-2xl text-navy/60 mb-10 rotate-[-1deg]">
               One-on-one custom work — jewelry, wall art, gifts, and decor
             </p>
             <Link to="/custom" className="inline-flex items-center gap-2 btn-painted-lime px-10 py-5 rounded-full font-black text-lg">
@@ -239,13 +255,15 @@ export default function HomePage() {
       </section>
 
       {/* ===== SERVICES ===== */}
-      <section className="relative py-24 px-6">
+      <section className="relative py-24 px-6 overflow-hidden">
+        <div className="wash-blue" style={{ top: '-10%', right: '-20%' }} />
+
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-3 gap-8">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <span className="badge-painted mb-4">Services</span>
               <h2 className="font-display text-4xl font-black text-navy mt-4 mb-4">More than a <span className="brush-under">shop</span></h2>
-              <p className="text-navy/70 leading-relaxed">Full creative services to bring your vision to life.</p>
+              <p className="text-navy/60 leading-relaxed">Full creative services to bring your vision to life.</p>
             </motion.div>
             {['Personalized design consultations', 'Custom gift bundles', 'Art and decor commissions', 'Jewelry repair or redesign', 'Seasonal handmade collections', 'Local pickup or shipping'].map((service, i) => (
               <motion.div key={service} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
@@ -261,7 +279,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="paint-divider" />
+      <div className="max-w-7xl mx-auto px-6"><div className="paint-divider" /></div>
 
       {/* ===== BOTTOM TAGLINE ===== */}
       <section className="relative py-20 px-6">
@@ -270,7 +288,7 @@ export default function HomePage() {
             Handmade with <span className="text-painted">passion.</span><br />
             Designed to <span className="text-painted">stand out.</span>
           </p>
-          <div className="flex items-center justify-center gap-6 md:gap-8 text-navy/60 text-sm font-bold uppercase tracking-[0.25em]">
+          <div className="flex items-center justify-center gap-6 md:gap-8 text-navy/50 text-sm font-bold uppercase tracking-[0.25em]">
             <span className="flex items-center gap-2"><Fingerprint size={16} className="text-purple" /> Handmade</span>
             <span className="text-gold text-lg">&bull;</span>
             <span className="flex items-center gap-2"><Heart size={16} className="text-purple" /> Heartfelt</span>

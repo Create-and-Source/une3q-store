@@ -31,9 +31,9 @@ export default function Shop() {
   const displayed = search ? products.filter(p => p.name.toLowerCase().includes(search.toLowerCase())) : products
 
   return (
-    <div className="min-h-screen text-navy relative">
-      <img src="/textures/splat-1.png" alt="" className="paint-splat top-[2%] left-[3%] w-[250px] opacity-[0.06]" style={{ filter: 'invert(42%) sepia(93%) saturate(1352%) hue-rotate(37deg)' }} />
-      <img src="/textures/splat-3.png" alt="" className="paint-splat bottom-[15%] right-[5%] w-[200px] opacity-[0.05]" style={{ filter: 'invert(60%) sepia(100%) saturate(400%) hue-rotate(14deg)' }} />
+    <div className="min-h-screen text-navy relative overflow-hidden">
+      <div className="wash-purple" style={{ top: '-5%', right: '-15%' }} />
+      <div className="wash-lime" style={{ bottom: '10%', left: '-10%' }} />
 
       <section className="relative py-20 px-6">
         <div className="relative z-10 max-w-7xl mx-auto text-center">
@@ -42,7 +42,7 @@ export default function Shop() {
         </div>
       </section>
 
-      <div className="paint-divider" />
+      <div className="max-w-7xl mx-auto px-6"><div className="paint-divider" /></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-12">
         <div className="flex flex-col md:flex-row gap-4 md:items-center justify-between mb-10">
@@ -74,7 +74,7 @@ export default function Shop() {
           <div className="text-center py-20">
             <Gem size={48} className="mx-auto mb-4 text-gold/30" />
             <h3 className="text-2xl font-black mb-2">No products yet</h3>
-            <p className="text-navy/70">New items are being added soon.</p>
+            <p className="text-navy/60">New items are being added soon.</p>
           </div>
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -90,7 +90,7 @@ export default function Shop() {
                           <img src={img} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition duration-700" loading="lazy" />
                         </div>
                       ) : (
-                        <div className="aspect-square bg-cream flex items-center justify-center"><Gem size={48} className="text-gold/20" /></div>
+                        <div className="aspect-square bg-canvas flex items-center justify-center"><Gem size={48} className="text-gold/20" /></div>
                       )}
                     </Link>
                     <div className="p-6">
@@ -99,7 +99,7 @@ export default function Shop() {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <span className="text-lg font-bold">${Number(product.price).toFixed(2)}</span>
-                          {product.compare_at_price && <span className="text-sm text-navy/60 line-through">${Number(product.compare_at_price).toFixed(2)}</span>}
+                          {product.compare_at_price && <span className="text-sm text-navy/50 line-through">${Number(product.compare_at_price).toFixed(2)}</span>}
                         </div>
                         <button onClick={() => addItem({ id: product.id, name: product.name, price: Number(product.price), image: img })}
                           className="btn-painted-purple rounded-full px-4 py-2 font-bold text-sm">

@@ -11,7 +11,7 @@
   --color-gold: #c9a84c;
   --color-gold-light: #e0c87a;
   --color-cream: #f3eadb;
-  --color-canvas: #f5efe4;
+  --color-canvas: #faf8f3;
 
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body: 'Inter', system-ui, sans-serif;
@@ -19,25 +19,58 @@
 }
 
 /* ============================================================
-   THE CANVAS — One continuous painted surface
-   Everything sits on this. The whole page is one canvas.
+   BASE
    ============================================================ */
 * { font-family: var(--font-body); }
 .font-display { font-family: var(--font-display); }
 .font-script { font-family: var(--font-script); }
 
 body {
-  background:
-    url('/textures/paint-surface.jpg') center/cover no-repeat fixed,
-    url('/textures/canvas-weave.jpg') repeat fixed,
-    #f5efe4;
-  background-blend-mode: soft-light, multiply, normal;
+  background: #faf8f3;
+  color: #071f47;
 }
 
-::selection { background: rgba(122,31,173,0.25); }
+::selection { background: rgba(122,31,173,0.2); }
 
 /* ============================================================
-   PAINTED TEXT — Gradient text that looks like mixed paint
+   PAINT WASH — Soft color blobs that look like watercolor
+   Applied as absolutely-positioned pseudo-elements
+   ============================================================ */
+.wash-purple {
+  position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(122,31,173,0.15) 0%, rgba(122,31,173,0.05) 40%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(60px);
+}
+.wash-blue {
+  position: absolute;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(6,60,134,0.12) 0%, rgba(6,60,134,0.04) 40%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(60px);
+}
+.wash-lime {
+  position: absolute;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(167,201,0,0.12) 0%, rgba(167,201,0,0.04) 40%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(50px);
+}
+.wash-gold {
+  position: absolute;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, rgba(201,168,76,0.04) 40%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(50px);
+}
+
+/* ============================================================
+   PAINTED TEXT — Gradient text like mixed paint on palette
    ============================================================ */
 .text-painted {
   background: linear-gradient(135deg, #9b3fd4 0%, #063c86 40%, #a7c900 70%, #c9a84c 100%);
@@ -46,22 +79,8 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-.text-painted-purple {
-  background: linear-gradient(135deg, #b54cef, #7a1fad, #5a0f82);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-painted-blue {
-  background: linear-gradient(135deg, #2a6cc4, #063c86);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
 /* ============================================================
-   BRUSH STROKE UNDERLINE — Real brush texture under text
+   BRUSH STROKE UNDERLINE
    ============================================================ */
 .brush-under {
   position: relative;
@@ -70,40 +89,41 @@ body {
 .brush-under::after {
   content: '';
   position: absolute;
-  bottom: -8px; left: -6%; right: -6%;
-  height: 18px;
+  bottom: -6px; left: -4%; right: -4%;
+  height: 14px;
   background: url('/textures/stroke-3.png') center/100% 100% no-repeat;
-  opacity: 0.7;
-  filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(37deg) brightness(101%) contrast(97%);
+  opacity: 0.5;
+  filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(37deg);
 }
-
 .brush-under-purple::after {
-  filter: invert(20%) sepia(80%) saturate(3000%) hue-rotate(270deg) brightness(80%) contrast(100%);
+  filter: invert(20%) sepia(80%) saturate(3000%) hue-rotate(270deg) brightness(80%);
 }
-
 .brush-under-gold::after {
-  filter: invert(70%) sepia(50%) saturate(600%) hue-rotate(10deg) brightness(95%) contrast(90%);
+  filter: invert(70%) sepia(50%) saturate(600%) hue-rotate(10deg) brightness(95%);
 }
 
 /* ============================================================
-   PAINTED BUTTONS — Thick impasto paint feel
-   Real brush stroke texture + rich color
+   PAINT SPLAT — Subtle positioned decorations
+   ============================================================ */
+.paint-splat {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+}
+
+/* ============================================================
+   BUTTONS — Bold painted feel with thick bottom shadow
    ============================================================ */
 .btn-painted-purple {
   position: relative;
-  overflow: hidden;
-  background:
-    url('/textures/stroke-1.png') center/120% 220% no-repeat,
-    linear-gradient(135deg, #9b3fd4, #7a1fad, #5a0f82);
-  background-blend-mode: overlay, normal;
+  background: linear-gradient(135deg, #9b3fd4, #7a1fad, #5a0f82);
   color: white;
   border: none;
   box-shadow:
     0 4px 0 #4a0870,
-    0 8px 20px rgba(122,31,173,0.3),
-    inset 0 2px 4px rgba(255,255,255,0.2),
-    inset 0 -2px 4px rgba(0,0,0,0.15);
-  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    0 8px 20px rgba(122,31,173,0.25);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   cursor: pointer;
 }
@@ -112,25 +132,18 @@ body {
   transform: translateY(-2px);
   box-shadow:
     0 6px 0 #4a0870,
-    0 14px 35px rgba(122,31,173,0.4),
-    inset 0 2px 4px rgba(255,255,255,0.25);
+    0 14px 35px rgba(122,31,173,0.35);
 }
 
 .btn-painted-blue {
   position: relative;
-  overflow: hidden;
-  background:
-    url('/textures/stroke-2.png') center/120% 220% no-repeat,
-    linear-gradient(135deg, #1a5caf, #063c86, #042a5f);
-  background-blend-mode: overlay, normal;
+  background: linear-gradient(135deg, #1a5caf, #063c86, #042a5f);
   color: white;
   border: none;
   box-shadow:
     0 4px 0 #032050,
-    0 8px 20px rgba(6,60,134,0.3),
-    inset 0 2px 4px rgba(255,255,255,0.2),
-    inset 0 -2px 4px rgba(0,0,0,0.15);
-  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    0 8px 20px rgba(6,60,134,0.25);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   cursor: pointer;
 }
@@ -139,24 +152,17 @@ body {
   transform: translateY(-2px);
   box-shadow:
     0 6px 0 #032050,
-    0 14px 35px rgba(6,60,134,0.4),
-    inset 0 2px 4px rgba(255,255,255,0.25);
+    0 14px 35px rgba(6,60,134,0.35);
 }
 
 .btn-painted-lime {
   position: relative;
-  overflow: hidden;
-  background:
-    url('/textures/stroke-3.png') center/120% 220% no-repeat,
-    linear-gradient(135deg, #c4e530, #a7c900, #8aab00);
-  background-blend-mode: overlay, normal;
+  background: linear-gradient(135deg, #c4e530, #a7c900, #8aab00);
   color: #071f47;
   border: none;
   box-shadow:
     0 4px 0 #6e8800,
-    0 8px 20px rgba(167,201,0,0.3),
-    inset 0 2px 4px rgba(255,255,255,0.35),
-    inset 0 -2px 4px rgba(0,0,0,0.1);
+    0 8px 20px rgba(167,201,0,0.25);
   text-shadow: 0 1px 0 rgba(255,255,255,0.3);
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   cursor: pointer;
@@ -166,93 +172,58 @@ body {
   transform: translateY(-2px);
   box-shadow:
     0 6px 0 #6e8800,
-    0 14px 35px rgba(167,201,0,0.4),
-    inset 0 2px 4px rgba(255,255,255,0.35);
+    0 14px 35px rgba(167,201,0,0.35);
 }
 
 /* ============================================================
-   PAINTED CARD — Canvas texture card with thick painted border
+   CARDS — Clean with subtle border and lift
    ============================================================ */
 .card-canvas {
-  position: relative;
-  background:
-    url('/textures/canvas-weave.jpg') repeat,
-    #faf5ec;
-  background-blend-mode: multiply, normal;
+  background: #ffffff;
   border-radius: 1.5rem;
-  border: 4px solid transparent;
-  background-clip: padding-box;
+  border: 2px solid rgba(201,168,76,0.15);
   box-shadow:
-    0 2px 0 rgba(201,168,76,0.25),
-    0 8px 30px rgba(7,31,71,0.08),
-    inset 0 2px 6px rgba(255,255,255,0.5);
+    0 2px 0 rgba(201,168,76,0.1),
+    0 8px 30px rgba(7,31,71,0.06);
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   overflow: hidden;
 }
 .card-canvas:hover {
+  border-color: rgba(122,31,173,0.2);
   box-shadow:
-    0 4px 0 rgba(122,31,173,0.3),
-    0 16px 45px rgba(122,31,173,0.12),
-    inset 0 2px 6px rgba(255,255,255,0.5);
+    0 4px 0 rgba(122,31,173,0.1),
+    0 20px 50px rgba(122,31,173,0.1);
   transform: translateY(-4px);
 }
 
 /* ============================================================
-   PAINTED ICON CIRCLES — Thick paint dabs
+   ICON CIRCLES — Thick painted feel
    ============================================================ */
 .icon-painted-purple {
-  position: relative;
-  overflow: hidden;
-  background:
-    url('/textures/paint-surface.jpg') center/cover no-repeat,
-    linear-gradient(135deg, #b54cef, #9b3fd4, #7a1fad, #5a0f82);
-  background-blend-mode: overlay, normal;
+  background: linear-gradient(135deg, #b54cef, #9b3fd4, #7a1fad);
   box-shadow:
     0 4px 0 #4a0870,
-    0 8px 18px rgba(122,31,173,0.3),
-    inset 0 3px 6px rgba(255,255,255,0.25),
-    inset 0 -2px 4px rgba(0,0,0,0.2);
+    0 8px 18px rgba(122,31,173,0.3);
 }
-
 .icon-painted-blue {
-  position: relative;
-  overflow: hidden;
-  background:
-    url('/textures/paint-surface.jpg') center/cover no-repeat,
-    linear-gradient(135deg, #2a6cc4, #1a5caf, #063c86, #042a5f);
-  background-blend-mode: overlay, normal;
+  background: linear-gradient(135deg, #2a6cc4, #1a5caf, #063c86);
   box-shadow:
     0 4px 0 #032050,
-    0 8px 18px rgba(6,60,134,0.3),
-    inset 0 3px 6px rgba(255,255,255,0.25),
-    inset 0 -2px 4px rgba(0,0,0,0.2);
+    0 8px 18px rgba(6,60,134,0.3);
 }
-
 .icon-painted-lime {
-  position: relative;
-  overflow: hidden;
-  background:
-    url('/textures/paint-surface.jpg') center/cover no-repeat,
-    linear-gradient(135deg, #d4f040, #c4e530, #a7c900, #8aab00);
-  background-blend-mode: overlay, normal;
+  background: linear-gradient(135deg, #d4f040, #c4e530, #a7c900);
   box-shadow:
     0 4px 0 #6e8800,
-    0 8px 18px rgba(167,201,0,0.3),
-    inset 0 3px 6px rgba(255,255,255,0.35),
-    inset 0 -2px 4px rgba(0,0,0,0.1);
+    0 8px 18px rgba(167,201,0,0.3);
 }
 
 /* ============================================================
-   PAINTED BADGE — Small brush stroke pill
+   BADGE
    ============================================================ */
 .badge-painted {
   display: inline-block;
-  position: relative;
-  overflow: hidden;
-  background:
-    url('/textures/stroke-1.png') center/130% 280% no-repeat,
-    linear-gradient(135deg, #9b3fd4, #7a1fad);
-  background-blend-mode: overlay, normal;
+  background: linear-gradient(135deg, #9b3fd4, #7a1fad);
   color: white;
   border-radius: 9999px;
   padding: 8px 22px;
@@ -262,102 +233,73 @@ body {
   text-transform: uppercase;
   box-shadow:
     0 3px 0 #4a0870,
-    0 6px 12px rgba(122,31,173,0.25),
-    inset 0 1px 2px rgba(255,255,255,0.2);
-  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    0 6px 12px rgba(122,31,173,0.2);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 /* ============================================================
-   PAINT STROKE DIVIDER — Full-width brush stroke
+   DIVIDER — Colorful paint stroke
    ============================================================ */
 .paint-divider {
-  height: 12px;
-  position: relative;
-  background:
-    url('/textures/stroke-1.png') center/100% 100% no-repeat,
-    linear-gradient(90deg,
-      #7a1fad 0%, #063c86 15%, #c9a84c 30%, #a7c900 45%,
-      #063c86 55%, #c9a84c 65%, #7a1fad 80%, #063c86 100%);
-  background-blend-mode: overlay, normal;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  height: 6px;
+  background: linear-gradient(90deg,
+    #7a1fad 0%, #063c86 20%, #c9a84c 40%, #a7c900 60%,
+    #063c86 80%, #7a1fad 100%);
+  border-radius: 3px;
+  opacity: 0.6;
 }
 
 /* ============================================================
-   GOLD SHIMMER LINE
+   GOLD LINE
    ============================================================ */
 .gold-line {
-  height: 3px;
-  background: linear-gradient(90deg, transparent 5%, rgba(201,168,76,0.5) 20%, rgba(224,200,122,0.7) 50%, rgba(201,168,76,0.5) 80%, transparent 95%);
-  border-radius: 2px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 5%, rgba(201,168,76,0.4) 20%, rgba(224,200,122,0.6) 50%, rgba(201,168,76,0.4) 80%, transparent 95%);
 }
 
 /* ============================================================
-   PAINT SPLAT — Positioned absolute decorations
-   ============================================================ */
-.paint-splat {
-  position: absolute;
-  pointer-events: none;
-  mix-blend-mode: multiply;
-}
-
-/* ============================================================
-   PAINTED INPUT — Canvas texture input
+   INPUT
    ============================================================ */
 .input-painted {
-  background:
-    url('/textures/canvas-weave.jpg') repeat,
-    #faf5ec;
-  background-blend-mode: multiply, normal;
-  border: 3px solid rgba(201,168,76,0.3);
+  background: #ffffff;
+  border: 2px solid rgba(201,168,76,0.2);
   border-radius: 14px;
   padding: 14px 18px;
   color: #071f47;
   transition: all 0.3s;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.04);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
 }
-.input-painted::placeholder { color: rgba(7,31,71,0.45); }
+.input-painted::placeholder { color: rgba(7,31,71,0.4); }
 .input-painted:focus {
   outline: none;
-  border-color: rgba(122,31,173,0.5);
-  box-shadow: 0 0 0 4px rgba(122,31,173,0.1), inset 0 2px 4px rgba(0,0,0,0.04);
+  border-color: rgba(122,31,173,0.4);
+  box-shadow: 0 0 0 4px rgba(122,31,173,0.08), inset 0 2px 4px rgba(0,0,0,0.03);
 }
 
 /* ============================================================
-   PAINTED NAV — Sits on the canvas, gold frame bottom
+   NAV
    ============================================================ */
 .nav-canvas {
-  background:
-    url('/textures/canvas-weave.jpg') repeat,
-    rgba(245,239,228,0.95);
-  background-blend-mode: soft-light, normal;
-  backdrop-filter: blur(12px);
-  border-bottom: 3px solid rgba(201,168,76,0.25);
-  box-shadow: 0 4px 20px rgba(7,31,71,0.06);
+  background: rgba(250,248,243,0.9);
+  backdrop-filter: blur(16px);
+  border-bottom: 2px solid rgba(201,168,76,0.12);
+  box-shadow: 0 4px 20px rgba(7,31,71,0.04);
 }
 
 /* ============================================================
-   PAINTED FOOTER — Dark painted section
+   FOOTER — Dark painted section
    ============================================================ */
 .footer-painted {
-  position: relative;
-  overflow: hidden;
-  background:
-    url('/textures/paint-dark.jpg') center/cover no-repeat,
-    url('/textures/canvas-weave.jpg') repeat,
-    #071f47;
-  background-blend-mode: overlay, multiply, normal;
+  background: linear-gradient(160deg, #071f47, #0a2d63, #071f47);
 }
 
 /* ============================================================
    SCROLLBAR
    ============================================================ */
-::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track {
-  background: url('/textures/canvas-weave.jpg') repeat #f5efe4;
-  background-blend-mode: multiply;
-}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #faf8f3; }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #7a1fad, #063c86);
-  border-radius: 5px;
-  border: 2px solid #f5efe4;
+  border-radius: 4px;
+  border: 2px solid #faf8f3;
 }
