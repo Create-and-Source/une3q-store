@@ -6,20 +6,17 @@ export default function About() {
   return (
     <div className="min-h-screen canvas-bg text-navy">
       <section className="hero-painted relative py-24 px-6 overflow-hidden">
-        <div className="paint-splat top-[10%] left-[5%] w-[220px] h-[160px] rotate-[-12deg] opacity-40"
-          style={{ background: 'radial-gradient(ellipse, rgba(167,201,0,0.5) 0%, transparent 65%)' }} />
-        <div className="paint-splat bottom-[15%] right-[8%] w-[200px] h-[140px] rotate-[8deg] opacity-35"
-          style={{ background: 'radial-gradient(ellipse, rgba(201,168,76,0.5) 0%, transparent 60%)' }} />
+        <img src="/textures/splat-2.png" alt="" className="paint-splat top-[10%] left-[5%] w-[220px]" style={{ filter: 'invert(42%) sepia(93%) saturate(1352%) hue-rotate(37deg)', opacity: 0.12 }} />
+        <img src="/textures/splat-4.png" alt="" className="paint-splat bottom-[15%] right-[8%] w-[200px]" style={{ filter: 'invert(60%) sepia(100%) saturate(400%) hue-rotate(14deg)', opacity: 0.08 }} />
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <span className="badge-painted mb-4">About</span>
-            <h1 className="font-display text-5xl md:text-7xl font-black mt-6 text-white" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.4)' }}>UNE3Q</h1>
-            <p className="text-xl text-white/50 leading-relaxed max-w-2xl mx-auto mt-6" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.2)' }}>A creative studio dedicated to crafting unique, handmade pieces that celebrate individuality and self-expression.</p>
+            <h1 className="font-display text-5xl md:text-7xl font-black mt-6 text-white" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>UNE3Q</h1>
+            <p className="text-xl text-white/50 leading-relaxed max-w-2xl mx-auto mt-6" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>A creative studio dedicated to crafting unique, handmade pieces that celebrate individuality and self-expression.</p>
           </motion.div>
         </div>
       </section>
 
-      {/* Paint drip edge */}
       <div className="paint-edge relative z-20" style={{ marginTop: '-1px' }}>
         <svg viewBox="0 0 1440 70" preserveAspectRatio="none" style={{ height: '35px' }}>
           <path d="M0,0 C80,45 160,8 240,28 C320,52 400,5 480,32 C560,55 640,12 720,35 C800,58 880,8 960,22 C1040,42 1120,5 1200,28 C1280,52 1360,18 1440,35 L1440,70 L0,70 Z" fill="#f5efe4" />

@@ -18,20 +18,17 @@ export default function CustomOrders() {
   return (
     <div className="min-h-screen canvas-bg text-navy">
       <section className="hero-painted relative py-20 px-6 overflow-hidden">
-        {/* Paint splats */}
-        <div className="paint-splat top-[8%] left-[5%] w-[250px] h-[180px] rotate-[-12deg] opacity-45"
-          style={{ background: 'radial-gradient(ellipse, rgba(167,201,0,0.5) 0%, transparent 65%)' }} />
-        <div className="paint-splat bottom-[12%] right-[8%] w-[220px] h-[150px] rotate-[10deg] opacity-35"
-          style={{ background: 'radial-gradient(ellipse, rgba(201,168,76,0.5) 0%, transparent 60%)' }} />
+        <img src="/textures/splat-1.png" alt="" className="paint-splat top-[8%] left-[5%] w-[250px]" style={{ filter: 'invert(42%) sepia(93%) saturate(1352%) hue-rotate(37deg)', opacity: 0.12 }} />
+        <img src="/textures/splat-4.png" alt="" className="paint-splat bottom-[12%] right-[8%] w-[220px]" style={{ filter: 'invert(60%) sepia(100%) saturate(400%) hue-rotate(14deg)', opacity: 0.08 }} />
 
         <div className="relative z-10 max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <span className="badge-painted mb-4">Custom Made</span>
-            <h1 className="font-display text-4xl md:text-6xl font-black mb-6 leading-tight mt-4 text-white" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.4)' }}>
+            <h1 className="font-display text-4xl md:text-6xl font-black mb-6 leading-tight mt-4 text-white" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
               Made with <span className="text-painted">passion.</span><br />
               Designed to <span className="text-painted">stand out.</span>
             </h1>
-            <p className="font-script text-2xl text-white/50 mb-4 rotate-[-1deg]" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.3)' }}>One-on-one custom work that shows your individuality</p>
+            <p className="font-script text-2xl text-white/50 mb-4 rotate-[-1deg]" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>One-on-one custom work that shows your individuality</p>
             <div className="mt-8 grid grid-cols-3 gap-3">
               {[{ l: 'Handmade', i: Fingerprint, c: 'icon-painted-purple' }, { l: 'Heartfelt', i: Heart, c: 'icon-painted-blue' }, { l: 'One-of-a-Kind', i: Sun, c: 'icon-painted-lime' }].map(t => {
                 const I = t.i

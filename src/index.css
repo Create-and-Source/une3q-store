@@ -19,69 +19,44 @@
 }
 
 /* ============================================================
-   BASE — CANVAS WEAVE ON EVERYTHING
+   BASE — REAL CANVAS TEXTURE ON EVERYTHING
    ============================================================ */
 * { font-family: var(--font-body); }
 .font-display { font-family: var(--font-display); }
 .font-script { font-family: var(--font-script); }
 
 body {
-  background-color: #f5efe4;
-  background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23c)' opacity='0.05'/%3E%3C/svg%3E");
+  background: url('/textures/canvas-weave.jpg') repeat #f5efe4;
+  background-blend-mode: multiply;
 }
 
 ::selection { background: rgba(122,31,173,0.25); }
 
 /* ============================================================
    CANVAS BACKGROUND — LIGHT SECTIONS
-   Visible canvas weave + subtle color washes + directional brush texture
+   Canvas weave + oil paint texture overlay
    ============================================================ */
 .canvas-bg {
   position: relative;
-  background-color: #f5efe4;
-  background-image:
-    radial-gradient(ellipse 80% 60% at 5% 90%, rgba(122,31,173,0.07) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 80% at 95% 10%, rgba(6,60,134,0.07) 0%, transparent 50%),
-    radial-gradient(ellipse 50% 50% at 50% 50%, rgba(167,201,0,0.04) 0%, transparent 40%),
-    url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23c)' opacity='0.05'/%3E%3C/svg%3E");
-}
-/* Brush stroke texture overlay on light sections */
-.canvas-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.02 0.08' numOctaves='3' seed='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23b)' opacity='0.12'/%3E%3C/svg%3E");
-  mix-blend-mode: multiply;
-  opacity: 0.4;
+  background:
+    url('/textures/paint-surface.jpg') center/cover no-repeat,
+    url('/textures/canvas-weave.jpg') repeat,
+    #f5efe4;
+  background-blend-mode: soft-light, multiply, normal;
 }
 
 /* ============================================================
-   HERO — THICK OIL PAINTING
-   Bold colors + heavy brush stroke texture
+   HERO — REAL OIL PAINTING BACKGROUND
+   Dark blue impasto oil paint texture
    ============================================================ */
 .hero-painted {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(ellipse 45% 55% at 10% 85%, rgba(122,31,173,0.45) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 40% at 90% 10%, rgba(6,60,134,0.55) 0%, transparent 65%),
-    radial-gradient(ellipse 30% 50% at 70% 75%, rgba(167,201,0,0.3) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 35% at 30% 20%, rgba(6,60,134,0.35) 0%, transparent 55%),
-    radial-gradient(ellipse 35% 25% at 55% 45%, rgba(201,168,76,0.2) 0%, transparent 50%),
-    radial-gradient(ellipse 25% 40% at 15% 50%, rgba(167,201,0,0.15) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 30% at 80% 45%, rgba(122,31,173,0.25) 0%, transparent 55%),
-    linear-gradient(135deg, #071f47 0%, #0a2d63 25%, #0f1a3d 50%, #071f47 75%, #04132e 100%);
-}
-/* Heavy brush stroke texture on hero */
-.hero-painted::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='h'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.015 0.05' numOctaves='5' seed='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23h)' opacity='0.2'/%3E%3C/svg%3E");
-  mix-blend-mode: soft-light;
-  opacity: 0.6;
+    url('/textures/paint-dark.jpg') center/cover no-repeat,
+    url('/textures/paint-surface.jpg') center/cover no-repeat,
+    linear-gradient(135deg, #071f47 0%, #0a2d63 30%, #0f1a3d 60%, #071f47 100%);
+  background-blend-mode: overlay, soft-light, normal;
 }
 
 /* ============================================================
@@ -91,30 +66,22 @@ body {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(ellipse 50% 60% at 20% 80%, rgba(122,31,173,0.35) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 50% at 80% 20%, rgba(167,201,0,0.15) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 50% 50%, rgba(6,60,134,0.25) 0%, transparent 55%),
-    radial-gradient(ellipse 30% 30% at 70% 70%, rgba(201,168,76,0.15) 0%, transparent 50%),
+    url('/textures/paint-dark.jpg') center/cover no-repeat,
     linear-gradient(160deg, #071f47, #0a1e3f, #0d1535, #071f47);
-}
-.painted-dark::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='h'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.015 0.05' numOctaves='5' seed='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23h)' opacity='0.2'/%3E%3C/svg%3E");
-  mix-blend-mode: soft-light;
-  opacity: 0.5;
+  background-blend-mode: overlay, normal;
 }
 
 /* ============================================================
    PAINT-STROKE BUTTONS
-   Thick impasto shadows + brush texture overlay
+   Real brush stroke texture + brand color
    ============================================================ */
 .btn-painted-purple {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #9b3fd4 0%, #7a1fad 40%, #5a0f82 100%);
+  background:
+    url('/textures/stroke-1.png') center/110% 200% no-repeat,
+    linear-gradient(135deg, #9b3fd4, #7a1fad, #5a0f82);
+  background-blend-mode: overlay, normal;
   color: white;
   border: none;
   box-shadow:
@@ -124,16 +91,6 @@ body {
     inset 0 -2px 4px rgba(0,0,0,0.15);
   text-shadow: 0 1px 2px rgba(0,0,0,0.3);
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-}
-.btn-painted-purple::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.02 0.08' numOctaves='3' seed='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23b)' opacity='0.12'/%3E%3C/svg%3E");
-  mix-blend-mode: overlay;
-  opacity: 0.5;
-  pointer-events: none;
 }
 .btn-painted-purple:hover {
   filter: brightness(1.1);
@@ -147,7 +104,10 @@ body {
 .btn-painted-blue {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #1a5caf 0%, #063c86 40%, #042a5f 100%);
+  background:
+    url('/textures/stroke-2.png') center/110% 200% no-repeat,
+    linear-gradient(135deg, #1a5caf, #063c86, #042a5f);
+  background-blend-mode: overlay, normal;
   color: white;
   border: none;
   box-shadow:
@@ -157,16 +117,6 @@ body {
     inset 0 -2px 4px rgba(0,0,0,0.15);
   text-shadow: 0 1px 2px rgba(0,0,0,0.3);
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-}
-.btn-painted-blue::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.02 0.08' numOctaves='3' seed='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23b)' opacity='0.12'/%3E%3C/svg%3E");
-  mix-blend-mode: overlay;
-  opacity: 0.5;
-  pointer-events: none;
 }
 .btn-painted-blue:hover {
   filter: brightness(1.1);
@@ -180,7 +130,10 @@ body {
 .btn-painted-lime {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #c4e530 0%, #a7c900 40%, #8aab00 100%);
+  background:
+    url('/textures/stroke-3.png') center/110% 200% no-repeat,
+    linear-gradient(135deg, #c4e530, #a7c900, #8aab00);
+  background-blend-mode: overlay, normal;
   color: #071f47;
   border: none;
   box-shadow:
@@ -190,16 +143,6 @@ body {
     inset 0 -2px 4px rgba(0,0,0,0.1);
   text-shadow: 0 1px 0 rgba(255,255,255,0.3);
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-}
-.btn-painted-lime::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.02 0.08' numOctaves='3' seed='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23b)' opacity='0.12'/%3E%3C/svg%3E");
-  mix-blend-mode: overlay;
-  opacity: 0.4;
-  pointer-events: none;
 }
 .btn-painted-lime:hover {
   filter: brightness(1.05);
@@ -212,12 +155,15 @@ body {
 
 /* ============================================================
    PAINTED CARDS
-   Canvas texture bg + thick painted border + impasto shadow
+   Canvas texture + thick painted border + impasto shadow
    ============================================================ */
 .card-painted-round {
   position: relative;
-  background-color: #faf5ec;
-  background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23c)' opacity='0.05'/%3E%3C/svg%3E");
+  background:
+    url('/textures/canvas-weave.jpg') repeat,
+    #faf5ec;
+  background-blend-mode: multiply, normal;
+  border-radius: 1.5rem;
   box-shadow:
     inset 0 0 0 3px rgba(201,168,76,0.3),
     0 4px 0 rgba(7,31,71,0.06),
@@ -237,12 +183,16 @@ body {
 
 /* ============================================================
    PAINTED BADGE
+   Brush stroke background
    ============================================================ */
 .badge-painted {
   display: inline-block;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #9b3fd4, #7a1fad);
+  background:
+    url('/textures/stroke-1.png') center/120% 250% no-repeat,
+    linear-gradient(135deg, #9b3fd4, #7a1fad);
+  background-blend-mode: overlay, normal;
   color: white;
   border-radius: 9999px;
   padding: 8px 22px;
@@ -256,115 +206,67 @@ body {
     inset 0 1px 2px rgba(255,255,255,0.2);
   text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
-.badge-painted::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.02 0.08' numOctaves='3' seed='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23b)' opacity='0.12'/%3E%3C/svg%3E");
-  mix-blend-mode: overlay;
-  opacity: 0.5;
-  pointer-events: none;
-}
 
 /* ============================================================
    PAINTED ICON CIRCLES
-   Thick paint blob with impasto shadow
+   Oil paint texture + brand color
    ============================================================ */
 .icon-painted-purple {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #b54cef 0%, #9b3fd4 30%, #7a1fad 60%, #5a0f82 100%);
+  background:
+    url('/textures/paint-surface.jpg') center/cover no-repeat,
+    linear-gradient(135deg, #b54cef, #9b3fd4, #7a1fad, #5a0f82);
+  background-blend-mode: overlay, normal;
   box-shadow:
     0 4px 0 #4a0870,
     0 8px 18px rgba(122,31,173,0.35),
     inset 0 3px 6px rgba(255,255,255,0.25),
     inset 0 -2px 4px rgba(0,0,0,0.2);
 }
-.icon-painted-purple::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.02 0.08' numOctaves='3' seed='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23b)' opacity='0.12'/%3E%3C/svg%3E");
-  mix-blend-mode: overlay;
-  opacity: 0.5;
-  pointer-events: none;
-}
 
 .icon-painted-blue {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #2a6cc4 0%, #1a5caf 30%, #063c86 60%, #042a5f 100%);
+  background:
+    url('/textures/paint-surface.jpg') center/cover no-repeat,
+    linear-gradient(135deg, #2a6cc4, #1a5caf, #063c86, #042a5f);
+  background-blend-mode: overlay, normal;
   box-shadow:
     0 4px 0 #032050,
     0 8px 18px rgba(6,60,134,0.35),
     inset 0 3px 6px rgba(255,255,255,0.25),
     inset 0 -2px 4px rgba(0,0,0,0.2);
 }
-.icon-painted-blue::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.02 0.08' numOctaves='3' seed='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23b)' opacity='0.12'/%3E%3C/svg%3E");
-  mix-blend-mode: overlay;
-  opacity: 0.5;
-  pointer-events: none;
-}
 
 .icon-painted-lime {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #d4f040 0%, #c4e530 30%, #a7c900 60%, #8aab00 100%);
+  background:
+    url('/textures/paint-surface.jpg') center/cover no-repeat,
+    linear-gradient(135deg, #d4f040, #c4e530, #a7c900, #8aab00);
+  background-blend-mode: overlay, normal;
   box-shadow:
     0 4px 0 #6e8800,
     0 8px 18px rgba(167,201,0,0.35),
     inset 0 3px 6px rgba(255,255,255,0.35),
     inset 0 -2px 4px rgba(0,0,0,0.1);
 }
-.icon-painted-lime::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.02 0.08' numOctaves='3' seed='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23b)' opacity='0.12'/%3E%3C/svg%3E");
-  mix-blend-mode: overlay;
-  opacity: 0.4;
-  pointer-events: none;
-}
 
 /* ============================================================
    PAINT STROKE DIVIDER
-   Thick brush stroke between sections
+   Real brush stroke texture
    ============================================================ */
 .paint-divider {
   height: 8px;
   position: relative;
   background:
+    url('/textures/stroke-1.png') center/100% 100% no-repeat,
     linear-gradient(90deg,
-      #7a1fad 0%,
-      #063c86 15%,
-      #c9a84c 30%,
-      #a7c900 45%,
-      #063c86 55%,
-      #c9a84c 65%,
-      #7a1fad 80%,
-      #063c86 100%
-    );
-  box-shadow:
-    0 2px 4px rgba(0,0,0,0.15),
-    inset 0 1px 0 rgba(255,255,255,0.2);
-}
-/* Brush texture on the divider stripe */
-.paint-divider::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.02 0.08' numOctaves='3' seed='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23b)' opacity='0.12'/%3E%3C/svg%3E");
-  mix-blend-mode: overlay;
-  opacity: 0.6;
-  pointer-events: none;
+      #7a1fad 0%, #063c86 15%, #c9a84c 30%, #a7c900 45%,
+      #063c86 55%, #c9a84c 65%, #7a1fad 80%, #063c86 100%);
+  background-blend-mode: overlay, normal;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
 }
 
 /* ============================================================
@@ -382,8 +284,10 @@ body {
    Canvas texture + thick painted border
    ============================================================ */
 .input-painted {
-  background-color: #faf5ec;
-  background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23c)' opacity='0.05'/%3E%3C/svg%3E");
+  background:
+    url('/textures/canvas-weave.jpg') repeat,
+    #faf5ec;
+  background-blend-mode: multiply, normal;
   border: 3px solid rgba(201,168,76,0.25);
   border-radius: 14px;
   padding: 14px 18px;
@@ -402,8 +306,10 @@ body {
    PAINTED NAV
    ============================================================ */
 .nav-painted {
-  background-color: #f5efe4;
-  background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23c)' opacity='0.05'/%3E%3C/svg%3E");
+  background:
+    url('/textures/canvas-weave.jpg') repeat,
+    #f5efe4;
+  background-blend-mode: multiply, normal;
   box-shadow: 0 3px 0 rgba(201,168,76,0.15), 0 6px 20px rgba(7,31,71,0.05);
 }
 
@@ -429,34 +335,34 @@ body {
   position: absolute;
   bottom: -6px; left: -4%; right: -4%;
   height: 12px;
-  background: linear-gradient(90deg, transparent, rgba(167,201,0,0.7) 20%, rgba(201,168,76,0.5) 50%, rgba(122,31,173,0.5) 80%, transparent);
-  border-radius: 50%;
-  transform: scaleY(0.4);
+  background: url('/textures/stroke-3.png') center/100% 100% no-repeat;
+  opacity: 0.6;
+  filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(37deg) brightness(101%) contrast(97%);
 }
 
 /* ============================================================
-   PAINT EDGE — Wavy organic transitions between sections
+   PAINT SPLAT DECORATION — positioned absolutely
+   ============================================================ */
+.paint-splat {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.15;
+  mix-blend-mode: multiply;
+}
+
+/* ============================================================
+   PAINT EDGE — Wavy organic transitions
    ============================================================ */
 .paint-edge { display: block; width: 100%; line-height: 0; }
 .paint-edge svg { display: block; width: 100%; }
 
 /* ============================================================
-   PAINT SPLAT — Decorative paint blobs
-   ============================================================ */
-.paint-splat {
-  position: absolute;
-  border-radius: 60% 40% 55% 45%/45% 55% 40% 60%;
-  pointer-events: none;
-  filter: blur(15px);
-}
-
-/* ============================================================
-   SCROLLBAR
+   SCROLLBAR — painted
    ============================================================ */
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track {
-  background: #f5efe4;
-  background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23c)' opacity='0.05'/%3E%3C/svg%3E");
+  background: url('/textures/canvas-weave.jpg') repeat #f5efe4;
+  background-blend-mode: multiply;
 }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #7a1fad, #063c86);
