@@ -39,7 +39,7 @@ function RequireAuth({ children }) {
 
   if (session === undefined) {
     return (
-      <div className="min-h-screen bg-navy-deep flex items-center justify-center">
+      <div className="min-h-screen bg-canvas flex items-center justify-center">
         <div className="w-10 h-10 border-4 border-purple border-t-transparent rounded-full animate-spin" />
       </div>
     )
@@ -79,11 +79,11 @@ export default function App() {
 
         {/* 404 */}
         <Route path="*" element={
-          <div className="min-h-screen bg-navy-deep flex items-center justify-center text-center px-6">
+          <div className="min-h-screen bg-canvas flex items-center justify-center text-center px-6">
             <div>
-              <h1 className="text-6xl font-black text-white mb-4 font-display">404</h1>
-              <p className="text-xl text-white/50 mb-6">Page not found</p>
-              <a href="/" className="text-lime font-bold hover:underline">Go Home</a>
+              <h1 className="text-6xl font-black text-navy mb-4 font-display">404</h1>
+              <p className="text-xl text-navy/50 mb-6">Page not found</p>
+              <a href="/" className="text-purple font-bold hover:underline">Go Home</a>
             </div>
           </div>
         } />

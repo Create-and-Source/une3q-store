@@ -17,8 +17,7 @@ const SHIPPING_METHODS = [
 ]
 
 const TAX_RATE = 0.08
-
-const inputClass = "rounded-xl border border-white/10 p-4 bg-white/5 text-white placeholder:text-white/30 focus:border-purple/50 focus:outline-none transition"
+const inputClass = "rounded-xl border-2 border-cream-dark p-4 bg-canvas text-navy placeholder:text-navy/30 focus:border-purple focus:outline-none transition"
 
 export default function Checkout() {
   const { items, subtotal, clearCart } = useCart()
@@ -29,8 +28,7 @@ export default function Checkout() {
   const [form, setForm] = useState({
     email: '', firstName: '', lastName: '', phone: '',
     address: '', address2: '', city: '', state: '', zip: '',
-    shippingMethod: 'standard',
-    notes: '',
+    shippingMethod: 'standard', notes: '',
   })
 
   const set = (key, val) => setForm(prev => ({ ...prev, [key]: val }))
@@ -45,78 +43,50 @@ export default function Checkout() {
     if (items.length === 0) return
     setSubmitting(true)
     setError('')
-
     try {
       const { data: customer } = await supabase.from('customers')
         .upsert({ email: form.email, first_name: form.firstName, last_name: form.lastName, phone: form.phone }, { onConflict: 'email' })
         .select().single()
-
       const { data: order, error: orderErr } = await supabase.from('orders').insert({
-        customer_id: customer?.id,
-        email: form.email,
-        subtotal,
-        shipping_cost: shippingCost,
-        tax,
-        total,
-        shipping_first_name: form.firstName,
-        shipping_last_name: form.lastName,
-        shipping_address: form.address,
-        shipping_address2: form.address2,
-        shipping_city: form.city,
-        shipping_state: form.state,
-        shipping_zip: form.zip,
-        shipping_method: form.shippingMethod,
-        notes: form.notes,
-        status: 'pending',
+        customer_id: customer?.id, email: form.email, subtotal, shipping_cost: shippingCost, tax, total,
+        shipping_first_name: form.firstName, shipping_last_name: form.lastName, shipping_address: form.address,
+        shipping_address2: form.address2, shipping_city: form.city, shipping_state: form.state, shipping_zip: form.zip,
+        shipping_method: form.shippingMethod, notes: form.notes, status: 'pending',
       }).select().single()
-
       if (orderErr) throw orderErr
-
-      const orderItems = items.map(item => ({
-        order_id: order.id,
-        product_id: item.id,
-        product_name: item.name,
-        product_image: item.image,
-        quantity: item.quantity,
-        price: item.price,
-      }))
-      await supabase.from('order_items').insert(orderItems)
-
+      await supabase.from('order_items').insert(items.map(item => ({
+        order_id: order.id, product_id: item.id, product_name: item.name, product_image: item.image,
+        quantity: item.quantity, price: item.price,
+      })))
       clearCart()
       navigate('/order-confirmation', { state: { order, items } })
     } catch (err) {
       setError('Something went wrong. Please try again.')
       console.error(err)
-    } finally {
-      setSubmitting(false)
-    }
+    } finally { setSubmitting(false) }
   }
 
-  if (items.length === 0) {
-    return (
-      <div className="min-h-screen bg-navy-deep flex items-center justify-center text-center px-6">
-        <div>
-          <h2 className="text-3xl font-black text-white mb-4">Nothing to checkout</h2>
-          <Link to="/shop" className="text-lime font-bold hover:underline">Go to Shop</Link>
-        </div>
+  if (items.length === 0) return (
+    <div className="min-h-screen bg-canvas flex items-center justify-center text-center px-6">
+      <div>
+        <h2 className="text-3xl font-black text-navy mb-4">Nothing to checkout</h2>
+        <Link to="/shop" className="text-purple font-bold hover:underline">Go to Shop</Link>
       </div>
-    )
-  }
+    </div>
+  )
 
   return (
-    <div className="min-h-screen bg-navy-deep text-white">
-      <div className="gold-line" />
+    <div className="min-h-screen bg-canvas text-navy">
+      <div className="paint-divider" />
       <div className="max-w-6xl mx-auto px-6 py-10">
-        <Link to="/cart" className="inline-flex items-center gap-1 text-gold font-bold mb-8 hover:text-gold-light transition">
+        <Link to="/cart" className="inline-flex items-center gap-1 text-purple font-bold mb-8 hover:underline">
           <ArrowLeft size={18} /> Back to Cart
         </Link>
-
         <h1 className="font-display text-4xl font-black mb-8">Checkout</h1>
 
         <form onSubmit={handleSubmit} className="grid lg:grid-cols-5 gap-8">
           <div className="lg:col-span-3 space-y-6">
-            {/* Contact */}
-            <div className="bg-white/[0.03] backdrop-blur-sm rounded-[2rem] p-6 md:p-8 border border-white/10">
+            <div className="bg-white rounded-[2rem] p-6 md:p-8 border-2 border-cream-dark">
               <h2 className="text-xl font-black mb-4">Contact Information</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <input required value={form.firstName} onChange={e => set('firstName', e.target.value)} placeholder="First Name" className={inputClass} />
@@ -125,110 +95,70 @@ export default function Checkout() {
                 <input type="tel" value={form.phone} onChange={e => set('phone', e.target.value)} placeholder="Phone (optional)" className={`${inputClass} md:col-span-2`} />
               </div>
             </div>
-
-            {/* Shipping Address */}
-            <div className="bg-white/[0.03] backdrop-blur-sm rounded-[2rem] p-6 md:p-8 border border-white/10">
+            <div className="bg-white rounded-[2rem] p-6 md:p-8 border-2 border-cream-dark">
               <h2 className="text-xl font-black mb-4">Shipping Address</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <input required value={form.address} onChange={e => set('address', e.target.value)} placeholder="Street Address" className={`${inputClass} md:col-span-2`} />
                 <input value={form.address2} onChange={e => set('address2', e.target.value)} placeholder="Apt, Suite, Unit (optional)" className={`${inputClass} md:col-span-2`} />
                 <input required value={form.city} onChange={e => set('city', e.target.value)} placeholder="City" className={inputClass} />
                 <select required value={form.state} onChange={e => set('state', e.target.value)} className={inputClass}>
-                  <option value="" className="bg-navy">State</option>
-                  {US_STATES.map(s => <option key={s} value={s} className="bg-navy">{s}</option>)}
+                  <option value="">State</option>
+                  {US_STATES.map(s => <option key={s} value={s}>{s}</option>)}
                 </select>
                 <input required value={form.zip} onChange={e => set('zip', e.target.value)} placeholder="ZIP Code" pattern="[0-9]{5}" className={inputClass} />
               </div>
             </div>
-
-            {/* Shipping Method */}
-            <div className="bg-white/[0.03] backdrop-blur-sm rounded-[2rem] p-6 md:p-8 border border-white/10">
+            <div className="bg-white rounded-[2rem] p-6 md:p-8 border-2 border-cream-dark">
               <h2 className="text-xl font-black mb-4">Shipping Method</h2>
               {subtotal >= 75 && <p className="text-lime font-bold text-sm mb-3">Free standard shipping on orders $75+!</p>}
               <div className="space-y-3">
                 {SHIPPING_METHODS.map(method => (
-                  <label key={method.id} className={`flex items-center justify-between p-4 rounded-xl border cursor-pointer transition ${form.shippingMethod === method.id ? 'border-purple bg-purple/10' : 'border-white/10 hover:border-purple/30'}`}>
+                  <label key={method.id} className={`flex items-center justify-between p-4 rounded-xl border-2 cursor-pointer transition ${form.shippingMethod === method.id ? 'border-purple bg-purple/5' : 'border-cream-dark hover:border-purple'}`}>
                     <div className="flex items-center gap-3">
                       <input type="radio" name="shipping" value={method.id} checked={form.shippingMethod === method.id} onChange={e => set('shippingMethod', e.target.value)} className="accent-purple" />
                       <span className="font-bold">{method.label}</span>
                     </div>
-                    <span className="font-black">
-                      {subtotal >= 75 && method.id === 'standard' ? <span className="text-lime">FREE</span> : `$${method.price.toFixed(2)}`}
-                    </span>
+                    <span className="font-black">{subtotal >= 75 && method.id === 'standard' ? <span className="text-lime">FREE</span> : `$${method.price.toFixed(2)}`}</span>
                   </label>
                 ))}
               </div>
             </div>
-
-            {/* Notes */}
-            <div className="bg-white/[0.03] backdrop-blur-sm rounded-[2rem] p-6 md:p-8 border border-white/10">
+            <div className="bg-white rounded-[2rem] p-6 md:p-8 border-2 border-cream-dark">
               <h2 className="text-xl font-black mb-4">Order Notes (optional)</h2>
-              <textarea
-                value={form.notes}
-                onChange={e => set('notes', e.target.value)}
-                placeholder="Special instructions for your order..."
-                className={`w-full ${inputClass} h-28`}
-              />
+              <textarea value={form.notes} onChange={e => set('notes', e.target.value)} placeholder="Special instructions..." className={`w-full ${inputClass} h-28`} />
             </div>
           </div>
 
-          {/* Order Summary */}
           <div className="lg:col-span-2">
-            <div className="relative bg-white/[0.03] backdrop-blur-sm rounded-[2rem] p-6 md:p-8 border border-white/10 sticky top-24">
-              <div className="absolute top-0 left-8 w-16 h-px bg-gradient-to-r from-gold/60 to-transparent" />
-              <div className="absolute top-0 left-8 w-px h-16 bg-gradient-to-b from-gold/60 to-transparent" />
-
+            <div className="bg-white rounded-[2rem] p-6 md:p-8 border-2 border-cream-dark sticky top-24" style={{ boxShadow: '6px 6px 0 #7a1fad' }}>
               <h2 className="text-xl font-black mb-6">Order Summary</h2>
-
               <div className="space-y-3 mb-6">
                 {items.map(item => (
                   <div key={item.id} className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-lg overflow-hidden bg-navy-light shrink-0">
+                    <div className="w-12 h-12 rounded-lg overflow-hidden bg-cream shrink-0">
                       {item.image && <img src={item.image} alt="" className="w-full h-full object-cover" />}
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="font-bold text-sm truncate">{item.name}</p>
-                      <p className="text-xs text-white/30">Qty: {item.quantity}</p>
+                      <p className="text-xs text-navy/40">Qty: {item.quantity}</p>
                     </div>
                     <p className="font-bold text-sm">${(item.price * item.quantity).toFixed(2)}</p>
                   </div>
                 ))}
               </div>
-
-              <div className="border-t border-white/10 pt-4 space-y-2 mb-4">
-                <div className="flex justify-between text-sm">
-                  <span className="text-white/50">Subtotal</span>
-                  <span className="font-bold">${subtotal.toFixed(2)}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-white/50">Shipping</span>
-                  <span className="font-bold">{shippingCost === 0 ? <span className="text-lime">FREE</span> : `$${shippingCost.toFixed(2)}`}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-white/50">Tax (8%)</span>
-                  <span className="font-bold">${tax.toFixed(2)}</span>
-                </div>
+              <div className="border-t-2 border-cream-dark pt-4 space-y-2 mb-4">
+                <div className="flex justify-between text-sm"><span className="text-navy/50">Subtotal</span><span className="font-bold">${subtotal.toFixed(2)}</span></div>
+                <div className="flex justify-between text-sm"><span className="text-navy/50">Shipping</span><span className="font-bold">{shippingCost === 0 ? <span className="text-lime">FREE</span> : `$${shippingCost.toFixed(2)}`}</span></div>
+                <div className="flex justify-between text-sm"><span className="text-navy/50">Tax (8%)</span><span className="font-bold">${tax.toFixed(2)}</span></div>
               </div>
-
-              <div className="border-t border-white/10 pt-4 flex justify-between text-xl font-black mb-6">
-                <span>Total</span>
-                <span className="text-lime">${total.toFixed(2)}</span>
+              <div className="border-t-2 border-cream-dark pt-4 flex justify-between text-xl font-black mb-6">
+                <span>Total</span><span className="text-purple">${total.toFixed(2)}</span>
               </div>
-
-              {error && <p className="text-red-400 font-bold text-sm mb-4">{error}</p>}
-
-              <button
-                type="submit"
-                disabled={submitting}
-                className="w-full bg-gradient-to-r from-purple to-purple-deep text-white rounded-full py-4 font-black text-lg shadow-xl hover:shadow-purple/30 hover:scale-[1.02] transition-all flex items-center justify-center gap-2 disabled:opacity-50 border border-purple-light/30"
-              >
-                <Lock size={18} />
-                {submitting ? 'Processing...' : 'Place Order'}
+              {error && <p className="text-red-600 font-bold text-sm mb-4">{error}</p>}
+              <button type="submit" disabled={submitting} className="w-full bg-purple text-white rounded-full py-4 font-black text-lg shadow-lg color-shadow hover:scale-[1.02] transition-all flex items-center justify-center gap-2 disabled:opacity-50">
+                <Lock size={18} /> {submitting ? 'Processing...' : 'Place Order'}
               </button>
-
-              <p className="text-xs text-center text-white/30 mt-3">
-                Payment processing coming soon. Orders are recorded and you will be contacted for payment.
-              </p>
+              <p className="text-xs text-center text-navy/40 mt-3">Payment processing coming soon. Orders are recorded and you will be contacted for payment.</p>
             </div>
           </div>
         </form>

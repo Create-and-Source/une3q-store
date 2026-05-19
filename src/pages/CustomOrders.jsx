@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { CheckCircle2, ArrowRight } from 'lucide-react'
+import { CheckCircle2, ArrowRight, Fingerprint, Heart, Sun } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { supabase } from '../lib/supabase'
 
@@ -24,58 +24,63 @@ export default function CustomOrders() {
   }
 
   return (
-    <div className="min-h-screen bg-navy-deep text-white">
-      <section className="relative py-20 px-6 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-deep via-purple-deep/30 to-navy-deep" />
-        <div className="absolute -left-32 -top-32 w-96 h-96 rounded-full bg-purple/20 blur-[100px]" />
-        <div className="absolute -right-32 bottom-0 w-96 h-96 rounded-full bg-lime/10 blur-[80px]" />
-        <div className="absolute top-0 left-0 right-0 gold-line" />
+    <div className="min-h-screen bg-canvas text-navy">
+      <section className="hero-paint relative py-20 px-6 overflow-hidden">
+        <div className="absolute -top-20 -left-20 w-[400px] h-[400px] rounded-full bg-purple/15 blur-[80px]" />
+        <div className="absolute -bottom-10 -right-10 w-[350px] h-[350px] rounded-full bg-lime/12 blur-[60px]" />
+        <div className="absolute top-16 right-20 w-24 h-3 bg-royal/20 rounded-full rotate-[-12deg]" />
+        <div className="absolute bottom-20 left-16 w-20 h-3 bg-lime/25 rounded-full rotate-[8deg]" />
 
         <div className="max-w-6xl mx-auto relative grid md:grid-cols-2 gap-12 items-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <p className="text-gold tracking-[0.4em] uppercase text-sm font-bold mb-4">Custom Made</p>
-            <h1 className="font-display text-4xl md:text-6xl font-black mb-6 leading-tight">
-              Made with <span className="text-purple-light">passion.</span><br />
-              Designed to <span className="text-lime">stand out.</span>
+            <span className="blob-lime text-xs tracking-[0.35em] uppercase mb-4 inline-block">Custom Made</span>
+            <h1 className="font-display text-4xl md:text-6xl font-black mb-6 leading-tight mt-4">
+              Made with <span className="text-purple">passion.</span><br />
+              Designed to <span className="text-lime brush-underline">stand out.</span>
             </h1>
-            <p className="text-lg text-white/50 leading-relaxed">
-              Request one-on-one custom work for jewelry, wall art, handmade gifts, and home decor that shows your individuality.
+            <p className="font-script text-2xl text-royal/60 mb-4 rotate-[-1deg]">
+              One-on-one custom work that shows your individuality
             </p>
 
             <div className="mt-8 grid grid-cols-3 gap-3">
-              {['Handmade', 'Heartfelt', 'One-of-a-Kind'].map(tag => (
-                <div key={tag} className="bg-white/[0.03] rounded-xl py-3 px-2 border border-white/5 text-center">
-                  <p className="text-xs font-bold uppercase tracking-wider text-gold">{tag}</p>
-                </div>
-              ))}
+              {[
+                { label: 'Handmade', icon: Fingerprint, bg: 'bg-purple' },
+                { label: 'Heartfelt', icon: Heart, bg: 'bg-royal' },
+                { label: 'One-of-a-Kind', icon: Sun, bg: 'bg-lime' },
+              ].map(tag => {
+                const Icon = tag.icon
+                return (
+                  <div key={tag.label} className={`${tag.bg} ${tag.bg === 'bg-lime' ? 'text-navy' : 'text-white'} rounded-xl py-3 px-2 text-center`}>
+                    <Icon size={16} className="mx-auto mb-1" />
+                    <p className="text-[10px] font-black uppercase tracking-wider">{tag.label}</p>
+                  </div>
+                )
+              })}
             </div>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
-            <div className="relative bg-white/[0.03] backdrop-blur-sm rounded-[2rem] p-8 border border-white/10">
-              <div className="absolute top-0 left-8 w-16 h-px bg-gradient-to-r from-gold/60 to-transparent" />
-              <div className="absolute top-0 left-8 w-px h-16 bg-gradient-to-b from-gold/60 to-transparent" />
-
+            <div className="bg-white rounded-[2rem] p-8 border-2 border-cream-dark" style={{ boxShadow: '8px 8px 0 #7a1fad' }}>
               {submitted ? (
                 <div className="text-center py-8">
                   <CheckCircle2 size={48} className="mx-auto mb-4 text-lime" />
                   <h3 className="text-2xl font-black mb-2">Request Sent!</h3>
-                  <p className="text-white/50">We'll be in touch within 24-48 hours to discuss your custom piece.</p>
+                  <p className="text-navy/50">We'll be in touch within 24-48 hours to discuss your custom piece.</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit}>
                   <h3 className="text-2xl font-black mb-5">Custom Order Request</h3>
                   <div className="space-y-4">
-                    <input required value={form.name} onChange={e => set('name', e.target.value)} className="w-full rounded-xl border border-white/10 p-4 bg-white/5 text-white placeholder:text-white/30 focus:border-purple/50 focus:outline-none transition" placeholder="Name" />
-                    <input required type="email" value={form.email} onChange={e => set('email', e.target.value)} className="w-full rounded-xl border border-white/10 p-4 bg-white/5 text-white placeholder:text-white/30 focus:border-purple/50 focus:outline-none transition" placeholder="Email" />
-                    <select value={form.type} onChange={e => set('type', e.target.value)} className="w-full rounded-xl border border-white/10 p-4 bg-white/5 text-white focus:border-purple/50 focus:outline-none transition">
-                      <option className="bg-navy">Handmade Jewelry</option>
-                      <option className="bg-navy">Unique Art</option>
-                      <option className="bg-navy">Home Decor</option>
-                      <option className="bg-navy">Other Custom Piece</option>
+                    <input required value={form.name} onChange={e => set('name', e.target.value)} className="w-full rounded-xl border-2 border-cream-dark p-4 bg-canvas placeholder:text-navy/30 focus:border-purple focus:outline-none transition" placeholder="Name" />
+                    <input required type="email" value={form.email} onChange={e => set('email', e.target.value)} className="w-full rounded-xl border-2 border-cream-dark p-4 bg-canvas placeholder:text-navy/30 focus:border-purple focus:outline-none transition" placeholder="Email" />
+                    <select value={form.type} onChange={e => set('type', e.target.value)} className="w-full rounded-xl border-2 border-cream-dark p-4 bg-canvas focus:border-purple focus:outline-none transition">
+                      <option>Handmade Jewelry</option>
+                      <option>Unique Art</option>
+                      <option>Home Decor</option>
+                      <option>Other Custom Piece</option>
                     </select>
-                    <textarea required value={form.details} onChange={e => set('details', e.target.value)} className="w-full rounded-xl border border-white/10 p-4 bg-white/5 text-white placeholder:text-white/30 h-28 focus:border-purple/50 focus:outline-none transition" placeholder="Tell us what you want created..." />
-                    <button type="submit" disabled={submitting} className="w-full bg-lime text-navy rounded-full py-4 font-black disabled:opacity-50 hover:scale-[1.02] transition-all flex items-center justify-center gap-2 shadow-xl hover:shadow-lime/30">
+                    <textarea required value={form.details} onChange={e => set('details', e.target.value)} className="w-full rounded-xl border-2 border-cream-dark p-4 bg-canvas placeholder:text-navy/30 h-28 focus:border-purple focus:outline-none transition" placeholder="Tell us what you want created..." />
+                    <button type="submit" disabled={submitting} className="w-full bg-lime text-navy rounded-full py-4 font-black disabled:opacity-50 hover:scale-[1.02] transition-all flex items-center justify-center gap-2 text-lg" style={{ boxShadow: '6px 6px 0 #7a1fad' }}>
                       {submitting ? 'Sending...' : 'Send Request'} {!submitting && <ArrowRight size={18} />}
                     </button>
                   </div>

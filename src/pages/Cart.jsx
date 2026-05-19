@@ -7,11 +7,11 @@ export default function Cart() {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-navy-deep flex items-center justify-center text-center px-6">
+      <div className="min-h-screen bg-canvas flex items-center justify-center text-center px-6">
         <div>
-          <ShoppingBag size={48} className="mx-auto mb-4 text-white/20" />
-          <h2 className="text-3xl font-black text-white mb-4">Your cart is empty</h2>
-          <Link to="/shop" className="inline-flex items-center gap-2 bg-gradient-to-r from-purple to-purple-deep text-white px-8 py-4 rounded-full font-bold shadow-xl hover:scale-105 transition-all border border-purple-light/30">
+          <ShoppingBag size={48} className="mx-auto mb-4 text-cream-dark" />
+          <h2 className="text-3xl font-black text-navy mb-4">Your cart is empty</h2>
+          <Link to="/shop" className="inline-flex items-center gap-2 bg-purple text-white px-8 py-4 rounded-full font-bold shadow-lg color-shadow hover:scale-105 transition-all">
             Continue Shopping
           </Link>
         </div>
@@ -20,10 +20,10 @@ export default function Cart() {
   }
 
   return (
-    <div className="min-h-screen bg-navy-deep text-white">
-      <div className="gold-line" />
+    <div className="min-h-screen bg-canvas text-navy">
+      <div className="paint-divider" />
       <div className="max-w-4xl mx-auto px-6 py-10">
-        <Link to="/shop" className="inline-flex items-center gap-1 text-gold font-bold mb-8 hover:text-gold-light transition">
+        <Link to="/shop" className="inline-flex items-center gap-1 text-purple font-bold mb-8 hover:underline">
           <ArrowLeft size={18} /> Continue Shopping
         </Link>
 
@@ -31,34 +31,33 @@ export default function Cart() {
 
         <div className="space-y-4 mb-8">
           {items.map(item => (
-            <div key={item.id} className="bg-white/[0.03] backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-white/10 flex gap-4 items-center">
-              <div className="w-20 h-20 rounded-xl overflow-hidden bg-navy-light shrink-0">
+            <div key={item.id} className="bg-white rounded-2xl p-4 md:p-6 border-2 border-cream-dark flex gap-4 items-center">
+              <div className="w-20 h-20 rounded-xl overflow-hidden bg-cream shrink-0">
                 {item.image ? (
                   <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">
-                    <ShoppingBag size={24} className="text-white/10" />
+                    <ShoppingBag size={24} className="text-cream-dark" />
                   </div>
                 )}
               </div>
 
               <div className="flex-1 min-w-0">
                 <h3 className="font-black truncate">{item.name}</h3>
-                <p className="text-purple-light font-bold">${item.price.toFixed(2)}</p>
+                <p className="text-purple font-bold">${item.price.toFixed(2)}</p>
               </div>
 
               <div className="flex items-center gap-2">
-                <div className="flex items-center border border-white/10 rounded-full overflow-hidden bg-white/5">
-                  <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="px-3 py-2 hover:bg-white/10 transition">
+                <div className="flex items-center border-2 border-cream-dark rounded-full overflow-hidden bg-canvas">
+                  <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="px-3 py-2 hover:bg-cream transition">
                     <Minus size={14} />
                   </button>
                   <span className="px-3 py-2 font-black text-sm">{item.quantity}</span>
-                  <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="px-3 py-2 hover:bg-white/10 transition">
+                  <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="px-3 py-2 hover:bg-cream transition">
                     <Plus size={14} />
                   </button>
                 </div>
-
-                <button onClick={() => removeItem(item.id)} className="p-2 text-red-400 hover:bg-red-500/10 rounded-full transition">
+                <button onClick={() => removeItem(item.id)} className="p-2 text-red-500 hover:bg-red-50 rounded-full transition">
                   <Trash2 size={18} />
                 </button>
               </div>
@@ -68,27 +67,24 @@ export default function Cart() {
           ))}
         </div>
 
-        <div className="relative bg-white/[0.03] backdrop-blur-sm rounded-[2rem] p-8 border border-white/10">
-          <div className="absolute top-0 left-8 w-16 h-px bg-gradient-to-r from-gold/60 to-transparent" />
-          <div className="absolute top-0 left-8 w-px h-16 bg-gradient-to-b from-gold/60 to-transparent" />
-
+        <div className="bg-white rounded-[2rem] p-8 border-2 border-cream-dark" style={{ boxShadow: '8px 8px 0 #7a1fad' }}>
           <div className="flex justify-between text-lg mb-2">
-            <span className="text-white/60">Subtotal</span>
+            <span className="text-navy/60">Subtotal</span>
             <span className="font-black">${subtotal.toFixed(2)}</span>
           </div>
-          <div className="flex justify-between text-sm text-white/30 mb-2">
+          <div className="flex justify-between text-sm text-navy/40 mb-2">
             <span>Shipping</span>
             <span>Calculated at checkout</span>
           </div>
-          <div className="flex justify-between text-sm text-white/30 mb-6">
+          <div className="flex justify-between text-sm text-navy/40 mb-6">
             <span>Tax</span>
             <span>Calculated at checkout</span>
           </div>
-          <div className="border-t border-white/10 pt-4 flex justify-between text-2xl font-black mb-6">
+          <div className="border-t-2 border-cream-dark pt-4 flex justify-between text-2xl font-black mb-6">
             <span>Estimated Total</span>
-            <span className="text-lime">${subtotal.toFixed(2)}</span>
+            <span className="text-purple">${subtotal.toFixed(2)}</span>
           </div>
-          <Link to="/checkout" className="block w-full bg-gradient-to-r from-purple to-purple-deep text-white text-center rounded-full py-4 font-black text-lg shadow-xl hover:shadow-purple/30 hover:scale-[1.02] transition-all border border-purple-light/30">
+          <Link to="/checkout" className="block w-full bg-purple text-white text-center rounded-full py-4 font-black text-lg shadow-lg color-shadow hover:scale-[1.02] transition-all">
             Proceed to Checkout
           </Link>
         </div>
