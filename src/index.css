@@ -4,19 +4,13 @@
 
 @theme {
   --color-navy: #071f47;
-  --color-navy-light: #0a2d63;
   --color-royal: #063c86;
   --color-purple: #7a1fad;
   --color-purple-light: #9b3fd4;
-  --color-purple-deep: #5a0f82;
-  --color-purple-vivid: #8B2FC9;
   --color-lime: #a7c900;
-  --color-lime-bright: #c4e530;
   --color-gold: #c9a84c;
   --color-gold-light: #e0c87a;
   --color-cream: #f3eadb;
-  --color-cream-light: #f8f3eb;
-  --color-cream-dark: #e8dbc5;
   --color-canvas: #faf5ec;
 
   --font-display: 'Playfair Display', Georgia, serif;
@@ -28,57 +22,208 @@
 .font-display { font-family: var(--font-display); }
 .font-script { font-family: var(--font-script); }
 
-/* ===== CANVAS TEXTURE ===== */
+/* ===== PAINTED CANVAS BACKGROUND ===== */
 .canvas-bg {
-  background-color: var(--color-canvas);
+  background-color: #f5efe4;
   background-image:
-    url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    radial-gradient(ellipse 80% 60% at 5% 90%, rgba(122,31,173,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 80% at 95% 10%, rgba(6,60,134,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 50% at 50% 50%, rgba(167,201,0,0.05) 0%, transparent 40%),
+    radial-gradient(ellipse 30% 20% at 20% 30%, rgba(201,168,76,0.06) 0%, transparent 40%),
+    radial-gradient(ellipse 25% 30% at 80% 70%, rgba(122,31,173,0.05) 0%, transparent 40%),
+    url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
 }
 
-/* ===== PAINT SPLASHES ===== */
-.splash-purple {
-  position: relative;
+/* ===== FULL PAINTERLY HERO ===== */
+.hero-painted {
+  background:
+    radial-gradient(ellipse 45% 55% at 10% 85%, rgba(122,31,173,0.35) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 90% 10%, rgba(6,60,134,0.45) 0%, transparent 65%),
+    radial-gradient(ellipse 30% 50% at 70% 75%, rgba(167,201,0,0.25) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 35% at 30% 20%, rgba(6,60,134,0.3) 0%, transparent 55%),
+    radial-gradient(ellipse 35% 25% at 55% 45%, rgba(201,168,76,0.2) 0%, transparent 50%),
+    radial-gradient(ellipse 25% 40% at 15% 50%, rgba(167,201,0,0.15) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 30% at 80% 45%, rgba(122,31,173,0.2) 0%, transparent 55%),
+    linear-gradient(135deg, #071f47 0%, #0a2d63 25%, #0f1a3d 50%, #071f47 75%, #04132e 100%);
 }
-.splash-purple::before {
+
+/* ===== PAINTED SECTION (dark) ===== */
+.painted-dark {
+  background:
+    radial-gradient(ellipse 50% 60% at 20% 80%, rgba(122,31,173,0.3) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 80% 20%, rgba(167,201,0,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 50% 50%, rgba(6,60,134,0.2) 0%, transparent 55%),
+    radial-gradient(ellipse 30% 30% at 70% 70%, rgba(201,168,76,0.15) 0%, transparent 50%),
+    linear-gradient(160deg, #071f47, #0a1e3f, #0d1535, #071f47);
+}
+
+/* ===== PAINTED BUTTON STYLES ===== */
+.btn-painted-purple {
+  background:
+    radial-gradient(ellipse 80% 80% at 30% 30%, rgba(155,63,212,0.6) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 60% at 70% 70%, rgba(6,60,134,0.4) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 50% 50%, rgba(201,168,76,0.15) 0%, transparent 50%),
+    linear-gradient(135deg, #7a1fad, #5a0f82, #3d0a5e, #7a1fad);
+  color: white;
+  border: 1px solid rgba(201,168,76,0.3);
+}
+.btn-painted-purple:hover {
+  filter: brightness(1.15);
+  transform: scale(1.03);
+}
+
+.btn-painted-blue {
+  background:
+    radial-gradient(ellipse 70% 70% at 25% 35%, rgba(6,100,180,0.5) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 75% 65%, rgba(122,31,173,0.3) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(201,168,76,0.1) 0%, transparent 50%),
+    linear-gradient(135deg, #063c86, #071f47, #0a2d63, #063c86);
+  color: white;
+  border: 1px solid rgba(201,168,76,0.25);
+}
+.btn-painted-blue:hover {
+  filter: brightness(1.15);
+  transform: scale(1.03);
+}
+
+.btn-painted-lime {
+  background:
+    radial-gradient(ellipse 70% 60% at 30% 40%, rgba(196,229,48,0.5) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 50% at 70% 60%, rgba(167,201,0,0.6) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 50% 30%, rgba(201,168,76,0.2) 0%, transparent 50%),
+    linear-gradient(135deg, #a7c900, #8aab00, #6e8800, #a7c900);
+  color: #071f47;
+  border: 1px solid rgba(201,168,76,0.3);
+}
+.btn-painted-lime:hover {
+  filter: brightness(1.1);
+  transform: scale(1.03);
+}
+
+/* ===== PAINTED CARD ===== */
+.card-painted {
+  background:
+    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(122,31,173,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 50% at 10% 90%, rgba(6,60,134,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 30% 30% at 50% 50%, rgba(201,168,76,0.03) 0%, transparent 40%),
+    linear-gradient(135deg, #fff 0%, #faf5ec 50%, #f5efe4 100%);
+  border: 2px solid transparent;
+  border-image: linear-gradient(135deg, rgba(122,31,173,0.2), rgba(201,168,76,0.3), rgba(6,60,134,0.2), rgba(167,201,0,0.2)) 1;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.card-painted:hover {
+  border-image: linear-gradient(135deg, rgba(122,31,173,0.5), rgba(201,168,76,0.5), rgba(6,60,134,0.4), rgba(167,201,0,0.4)) 1;
+  transform: translateY(-6px);
+  box-shadow:
+    0 4px 20px rgba(122,31,173,0.15),
+    0 8px 40px rgba(6,60,134,0.1),
+    inset 0 1px 0 rgba(201,168,76,0.2);
+}
+
+/* Rounded version (border-image doesn't work with border-radius) */
+.card-painted-round {
+  position: relative;
+  background:
+    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(122,31,173,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 50% at 10% 90%, rgba(6,60,134,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 30% 30% at 50% 50%, rgba(201,168,76,0.03) 0%, transparent 40%),
+    linear-gradient(135deg, #fff 0%, #faf5ec 50%, #f5efe4 100%);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.card-painted-round::before {
   content: '';
   position: absolute;
-  top: -30px; right: -30px;
-  width: 150px; height: 150px;
-  background: radial-gradient(ellipse, rgba(122,31,173,0.15) 0%, transparent 70%);
-  border-radius: 50% 60% 40% 50%;
-  transform: rotate(-15deg);
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, rgba(122,31,173,0.25), rgba(201,168,76,0.35), rgba(6,60,134,0.25), rgba(167,201,0,0.25));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
   pointer-events: none;
 }
-
-.splash-blue {
-  position: relative;
+.card-painted-round:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 4px 20px rgba(122,31,173,0.15),
+    0 8px 40px rgba(6,60,134,0.1);
 }
-.splash-blue::before {
-  content: '';
-  position: absolute;
-  bottom: -20px; left: -30px;
-  width: 180px; height: 120px;
-  background: radial-gradient(ellipse, rgba(6,60,134,0.12) 0%, transparent 70%);
-  border-radius: 40% 60% 50% 50%;
-  transform: rotate(10deg);
-  pointer-events: none;
+.card-painted-round:hover::before {
+  background: linear-gradient(135deg, rgba(122,31,173,0.5), rgba(201,168,76,0.5), rgba(6,60,134,0.4), rgba(167,201,0,0.4));
 }
 
-.splash-lime {
-  position: relative;
-}
-.splash-lime::before {
-  content: '';
-  position: absolute;
-  top: -20px; left: 50%;
-  width: 120px; height: 100px;
-  background: radial-gradient(ellipse, rgba(167,201,0,0.15) 0%, transparent 70%);
-  border-radius: 50% 40% 60% 50%;
-  transform: rotate(5deg);
-  pointer-events: none;
+/* ===== PAINTED BADGE ===== */
+.badge-painted {
+  background:
+    radial-gradient(ellipse 80% 80% at 30% 40%, rgba(155,63,212,0.5) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 60% at 70% 60%, rgba(6,60,134,0.4) 0%, transparent 60%),
+    linear-gradient(135deg, #7a1fad, #063c86);
+  color: white;
+  border-radius: 9999px;
+  padding: 6px 18px;
+  display: inline-block;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  border: 1px solid rgba(201,168,76,0.3);
 }
 
-/* ===== BRUSHSTROKE UNDERLINE ===== */
+/* ===== PAINTED ICON CIRCLE ===== */
+.icon-painted-purple {
+  background:
+    radial-gradient(circle at 35% 35%, rgba(155,63,212,0.7) 0%, transparent 60%),
+    radial-gradient(circle at 65% 65%, rgba(6,60,134,0.5) 0%, transparent 55%),
+    radial-gradient(circle at 50% 50%, rgba(201,168,76,0.2) 0%, transparent 40%),
+    linear-gradient(135deg, #7a1fad, #5a0f82);
+}
+.icon-painted-blue {
+  background:
+    radial-gradient(circle at 30% 40%, rgba(6,100,180,0.6) 0%, transparent 55%),
+    radial-gradient(circle at 70% 60%, rgba(122,31,173,0.3) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(201,168,76,0.15) 0%, transparent 40%),
+    linear-gradient(135deg, #063c86, #071f47);
+}
+.icon-painted-lime {
+  background:
+    radial-gradient(circle at 35% 35%, rgba(196,229,48,0.5) 0%, transparent 55%),
+    radial-gradient(circle at 65% 65%, rgba(167,201,0,0.6) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(201,168,76,0.2) 0%, transparent 40%),
+    linear-gradient(135deg, #a7c900, #8aab00);
+}
+
+/* ===== PAINTED DIVIDER ===== */
+.paint-divider {
+  height: 5px;
+  background:
+    linear-gradient(90deg,
+      rgba(122,31,173,0.9) 0%,
+      rgba(6,60,134,0.7) 15%,
+      rgba(201,168,76,0.6) 30%,
+      rgba(167,201,0,0.8) 45%,
+      rgba(6,60,134,0.5) 55%,
+      rgba(201,168,76,0.5) 65%,
+      rgba(122,31,173,0.7) 80%,
+      rgba(6,60,134,0.9) 100%
+    );
+}
+
+/* ===== GOLD SHIMMER LINE ===== */
+.gold-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent 5%, rgba(201,168,76,0.5) 20%, rgba(224,200,122,0.7) 50%, rgba(201,168,76,0.5) 80%, transparent 95%);
+}
+
+/* ===== PAINTED TEXT GRADIENT ===== */
+.text-painted {
+  background: linear-gradient(135deg, #7a1fad 0%, #063c86 40%, #a7c900 70%, #c9a84c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===== BRUSH UNDERLINE ===== */
 .brush-underline {
   position: relative;
   display: inline-block;
@@ -86,101 +231,46 @@
 .brush-underline::after {
   content: '';
   position: absolute;
-  bottom: -6px; left: -5%; right: -5%;
-  height: 10px;
-  background: linear-gradient(90deg, transparent 0%, var(--color-purple) 10%, var(--color-lime) 50%, var(--color-royal) 90%, transparent 100%);
+  bottom: -4px; left: -3%; right: -3%;
+  height: 8px;
+  background: linear-gradient(90deg, transparent, rgba(167,201,0,0.6) 20%, rgba(201,168,76,0.5) 50%, rgba(122,31,173,0.4) 80%, transparent);
   border-radius: 50%;
-  opacity: 0.5;
-  transform: scaleY(0.5);
+  transform: scaleY(0.6);
 }
 
-/* ===== PAINT STROKE BORDER ===== */
-.paint-border {
-  border: 3px solid transparent;
-  border-image: linear-gradient(135deg, var(--color-purple), var(--color-royal), var(--color-lime), var(--color-purple)) 1;
+/* ===== PAINTED NAV ===== */
+.nav-painted {
+  background:
+    radial-gradient(ellipse 40% 100% at 10% 50%, rgba(122,31,173,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 100% at 90% 50%, rgba(6,60,134,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 30% 80% at 50% 50%, rgba(201,168,76,0.04) 0%, transparent 40%),
+    linear-gradient(180deg, #faf5ec, #f5efe4);
 }
 
-/* ===== GOLD LINE ===== */
-.gold-line {
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--color-gold), var(--color-gold-light), var(--color-gold), transparent);
+/* ===== PAINTED INPUT ===== */
+.input-painted {
+  background:
+    radial-gradient(ellipse 60% 60% at 95% 50%, rgba(122,31,173,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 50% at 5% 50%, rgba(6,60,134,0.03) 0%, transparent 50%),
+    linear-gradient(135deg, #faf5ec, #f5efe4);
+  border: 2px solid rgba(201,168,76,0.2);
+  border-radius: 12px;
+  padding: 16px;
+  color: #071f47;
+  transition: all 0.3s;
 }
-
-/* ===== PAINT DIVIDER ===== */
-.paint-divider {
-  height: 6px;
-  background: linear-gradient(90deg,
-    var(--color-purple) 0%, var(--color-purple) 33%,
-    var(--color-lime) 33%, var(--color-lime) 66%,
-    var(--color-royal) 66%, var(--color-royal) 100%
-  );
-  opacity: 0.7;
-}
-
-/* ===== ART CARD ===== */
-.art-card {
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  border: 2px solid var(--color-cream-dark);
-}
-.art-card:hover {
-  transform: translateY(-8px) rotate(-0.5deg);
-  border-color: var(--color-purple);
-  box-shadow:
-    8px 8px 0 var(--color-lime),
-    0 20px 40px rgba(7,31,71,0.15);
-}
-
-/* ===== COLORFUL SHADOW CARD ===== */
-.color-shadow {
-  box-shadow: 6px 6px 0 var(--color-purple);
-  transition: all 0.3s ease;
-}
-.color-shadow:hover {
-  box-shadow: 8px 8px 0 var(--color-lime);
-  transform: translate(-2px, -2px);
-}
-
-/* ===== PAINT BLOB BADGES ===== */
-.blob-purple {
-  background: var(--color-purple);
-  color: white;
-  border-radius: 58% 42% 55% 45% / 50% 55% 45% 50%;
-  padding: 8px 20px;
-  display: inline-block;
-  font-weight: 800;
-}
-.blob-blue {
-  background: var(--color-royal);
-  color: white;
-  border-radius: 45% 55% 42% 58% / 55% 50% 50% 45%;
-  padding: 8px 20px;
-  display: inline-block;
-  font-weight: 800;
-}
-.blob-lime {
-  background: var(--color-lime);
-  color: var(--color-navy);
-  border-radius: 55% 45% 58% 42% / 45% 50% 50% 55%;
-  padding: 8px 20px;
-  display: inline-block;
-  font-weight: 800;
-}
-
-/* ===== PAINT SPLATTER HERO BG ===== */
-.hero-paint {
-  background-color: var(--color-canvas);
-  background-image:
-    radial-gradient(ellipse 50% 40% at 10% 20%, rgba(122,31,173,0.2) 0%, transparent 100%),
-    radial-gradient(ellipse 40% 50% at 85% 15%, rgba(6,60,134,0.25) 0%, transparent 100%),
-    radial-gradient(ellipse 35% 30% at 70% 80%, rgba(167,201,0,0.18) 0%, transparent 100%),
-    radial-gradient(ellipse 45% 35% at 25% 75%, rgba(6,60,134,0.12) 0%, transparent 100%),
-    radial-gradient(ellipse 30% 40% at 50% 40%, rgba(122,31,173,0.08) 0%, transparent 100%);
+.input-painted::placeholder { color: rgba(7,31,71,0.3); }
+.input-painted:focus {
+  outline: none;
+  border-color: rgba(122,31,173,0.5);
+  box-shadow: 0 0 0 3px rgba(122,31,173,0.1);
 }
 
 /* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--color-cream); }
-::-webkit-scrollbar-thumb { background: var(--color-purple); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--color-purple-light); }
-
-::selection { background: rgba(122, 31, 173, 0.25); }
+::-webkit-scrollbar-track { background: #f5efe4; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7a1fad, #063c86);
+  border-radius: 4px;
+}
+::selection { background: rgba(122,31,173,0.2); }
