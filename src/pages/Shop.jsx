@@ -31,33 +31,29 @@ export default function Shop() {
   const displayed = search ? products.filter(p => p.name.toLowerCase().includes(search.toLowerCase())) : products
 
   return (
-    <div className="min-h-screen canvas-bg text-navy">
-      <section className="hero-painted relative py-20 px-6 overflow-hidden">
-        <img src="/textures/splat-1.png" alt="" className="paint-splat top-[10%] left-[8%] w-[200px]" style={{ filter: 'invert(42%) sepia(93%) saturate(1352%) hue-rotate(37deg)', opacity: 0.12 }} />
-        <img src="/textures/splat-3.png" alt="" className="paint-splat bottom-[15%] right-[10%] w-[180px]" style={{ filter: 'invert(60%) sepia(100%) saturate(400%) hue-rotate(14deg)', opacity: 0.08 }} />
+    <div className="min-h-screen text-navy relative">
+      <img src="/textures/splat-1.png" alt="" className="paint-splat top-[2%] left-[3%] w-[250px] opacity-[0.06]" style={{ filter: 'invert(42%) sepia(93%) saturate(1352%) hue-rotate(37deg)' }} />
+      <img src="/textures/splat-3.png" alt="" className="paint-splat bottom-[15%] right-[5%] w-[200px] opacity-[0.05]" style={{ filter: 'invert(60%) sepia(100%) saturate(400%) hue-rotate(14deg)' }} />
+
+      <section className="relative py-20 px-6">
         <div className="relative z-10 max-w-7xl mx-auto text-center">
           <span className="badge-painted mb-4">Shop</span>
-          <h1 className="font-display text-5xl md:text-7xl font-black text-white mt-4" style={{ textShadow: '0 3px 12px rgba(0,0,0,0.8), 0 6px 30px rgba(0,0,0,0.5)' }}>The Collection</h1>
+          <h1 className="font-display text-5xl md:text-7xl font-black text-navy mt-4">The <span className="text-painted">Collection</span></h1>
         </div>
       </section>
 
-      <div className="paint-edge relative z-20" style={{ marginTop: '-1px' }}>
-        <svg viewBox="0 0 1440 70" preserveAspectRatio="none" style={{ height: '35px' }}>
-          <path d="M0,0 C80,45 160,8 240,28 C320,52 400,5 480,32 C560,55 640,12 720,35 C800,58 880,8 960,22 C1040,42 1120,5 1200,28 C1280,52 1360,18 1440,35 L1440,70 L0,70 Z" fill="#f5efe4" />
-        </svg>
-      </div>
       <div className="paint-divider" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-12">
         <div className="flex flex-col md:flex-row gap-4 md:items-center justify-between mb-10">
           <div className="flex flex-wrap gap-3">
             <button onClick={() => setSearchParams({})}
-              className={`rounded-full px-5 py-3 font-black transition-all ${activeCategory === 'all' ? 'btn-painted-purple' : 'card-painted-round border-0'}`}>
+              className={`rounded-full px-5 py-3 font-black transition-all ${activeCategory === 'all' ? 'btn-painted-purple' : 'card-canvas border-0'}`}>
               All
             </button>
             {categories.map(cat => (
               <button key={cat.id} onClick={() => setSearchParams({ category: cat.slug })}
-                className={`rounded-full px-5 py-3 font-black transition-all ${activeCategory === cat.slug ? 'btn-painted-purple' : 'card-painted-round border-0'}`}>
+                className={`rounded-full px-5 py-3 font-black transition-all ${activeCategory === cat.slug ? 'btn-painted-purple' : 'card-canvas border-0'}`}>
                 {cat.name}
               </button>
             ))}
@@ -87,7 +83,7 @@ export default function Shop() {
               const img = images[0]?.url
               return (
                 <motion.div key={product.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
-                  <div className="card-painted-round rounded-[2rem] overflow-hidden group">
+                  <div className="card-canvas rounded-[2rem] overflow-hidden group">
                     <Link to={`/product/${product.slug}`}>
                       {img ? (
                         <div className="aspect-square overflow-hidden">

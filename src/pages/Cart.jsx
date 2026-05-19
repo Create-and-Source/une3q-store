@@ -6,21 +6,21 @@ export default function Cart() {
   const { items, removeItem, updateQuantity, subtotal, itemCount } = useCart()
 
   if (items.length === 0) return (
-    <div className="min-h-screen canvas-bg flex items-center justify-center text-center px-6">
+    <div className="min-h-screen  flex items-center justify-center text-center px-6">
       <div className="relative z-10"><ShoppingBag size={48} className="mx-auto mb-4 text-gold/30" /><h2 className="text-3xl font-black text-navy mb-4">Your cart is empty</h2>
         <Link to="/shop" className="inline-flex items-center gap-2 btn-painted-purple px-8 py-4 rounded-full font-bold">Continue Shopping</Link></div>
     </div>
   )
 
   return (
-    <div className="min-h-screen canvas-bg text-navy">
+    <div className="min-h-screen  text-navy">
       <div className="paint-divider" />
       <div className="relative z-10 max-w-4xl mx-auto px-6 py-10">
         <Link to="/shop" className="inline-flex items-center gap-1 text-purple font-bold mb-8 hover:underline"><ArrowLeft size={18} /> Continue Shopping</Link>
         <h1 className="font-display text-4xl font-black mb-8">Your Cart ({itemCount})</h1>
         <div className="space-y-4 mb-8">
           {items.map(item => (
-            <div key={item.id} className="card-painted-round rounded-2xl p-4 md:p-6 flex gap-4 items-center">
+            <div key={item.id} className="card-canvas rounded-2xl p-4 md:p-6 flex gap-4 items-center">
               <div className="w-20 h-20 rounded-xl overflow-hidden bg-cream shrink-0">
                 {item.image ? <img src={item.image} alt={item.name} className="w-full h-full object-cover" /> : <div className="w-full h-full flex items-center justify-center"><ShoppingBag size={24} className="text-gold/20" /></div>}
               </div>
@@ -37,7 +37,7 @@ export default function Cart() {
             </div>
           ))}
         </div>
-        <div className="card-painted-round rounded-[2rem] p-8">
+        <div className="card-canvas rounded-[2rem] p-8">
           <div className="flex justify-between text-lg mb-2"><span className="text-navy/60">Subtotal</span><span className="font-black">${subtotal.toFixed(2)}</span></div>
           <div className="flex justify-between text-sm text-navy/70 mb-2"><span>Shipping</span><span>Calculated at checkout</span></div>
           <div className="flex justify-between text-sm text-navy/70 mb-6"><span>Tax</span><span>Calculated at checkout</span></div>

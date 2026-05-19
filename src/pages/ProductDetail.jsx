@@ -30,21 +30,21 @@ export default function ProductDetail() {
     setAdded(true); setTimeout(() => setAdded(false), 2000)
   }
 
-  if (loading) return <div className="min-h-screen canvas-bg flex items-center justify-center"><div className="w-12 h-12 border-4 border-purple border-t-transparent rounded-full animate-spin" /></div>
+  if (loading) return <div className="min-h-screen  flex items-center justify-center"><div className="w-12 h-12 border-4 border-purple border-t-transparent rounded-full animate-spin" /></div>
   if (!product) return (
-    <div className="min-h-screen canvas-bg flex items-center justify-center text-center px-6">
+    <div className="min-h-screen  flex items-center justify-center text-center px-6">
       <div><Gem size={48} className="mx-auto mb-4 text-gold/30" /><h2 className="text-3xl font-black text-navy mb-4">Product not found</h2><Link to="/shop" className="text-purple font-bold hover:underline">Back to Shop</Link></div>
     </div>
   )
 
   return (
-    <div className="min-h-screen canvas-bg text-navy">
+    <div className="min-h-screen  text-navy">
       <div className="paint-divider" />
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-10">
         <Link to="/shop" className="inline-flex items-center gap-1 text-purple font-bold mb-8 hover:underline"><ChevronLeft size={18} /> Back to Shop</Link>
         <div className="grid md:grid-cols-2 gap-12">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
-            <div className="aspect-square rounded-[2rem] overflow-hidden card-painted-round mb-4">
+            <div className="aspect-square rounded-[2rem] overflow-hidden card-canvas mb-4">
               {images.length > 0 ? <img src={images[activeImg]?.url} alt={images[activeImg]?.alt || product.name} className="w-full h-full object-cover" />
                 : <div className="w-full h-full flex items-center justify-center"><Gem size={64} className="text-gold/20" /></div>}
             </div>

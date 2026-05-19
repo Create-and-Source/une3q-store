@@ -6,7 +6,7 @@ export default function OrderConfirmation() {
   const { order, items } = location.state || {}
 
   return (
-    <div className="min-h-screen canvas-bg text-navy flex items-center justify-center px-6 py-16">
+    <div className="min-h-screen  text-navy flex items-center justify-center px-6 py-16">
       <div className="relative z-10 max-w-lg w-full text-center">
         <div className="w-20 h-20 rounded-full icon-painted-lime flex items-center justify-center mx-auto mb-6">
           <CheckCircle2 size={40} className="text-navy" />
@@ -14,7 +14,7 @@ export default function OrderConfirmation() {
         <h1 className="font-display text-4xl font-black mb-4">Order Confirmed!</h1>
         <p className="text-lg text-navy/70 mb-8">Thank you for your order. We'll be in touch shortly with payment details and shipping updates.</p>
         {order && (
-          <div className="card-painted-round rounded-[2rem] p-6 text-left mb-8">
+          <div className="card-canvas rounded-[2rem] p-6 text-left mb-8">
             <h2 className="font-black mb-4">Order Details</h2>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between"><span className="text-navy/70">Order #</span><span className="font-bold">{order.order_number}</span></div>

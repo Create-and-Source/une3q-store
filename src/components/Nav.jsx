@@ -11,8 +11,7 @@ export default function Nav() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 nav-painted backdrop-blur-lg">
-        <div className="paint-divider" />
+      <header className="sticky top-0 z-50 nav-canvas">
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
           <Link to="/" className="group">
             <img src="/logo.png" alt="UNE3Q" className="h-14 w-auto group-hover:scale-105 transition-transform" />
@@ -55,7 +54,7 @@ export default function Nav() {
       </header>
 
       {open && (
-        <div className="md:hidden fixed inset-0 top-[69px] z-40 canvas-bg backdrop-blur-xl">
+        <div className="md:hidden fixed inset-0 top-[69px] z-40 bg-canvas/95 backdrop-blur-xl">
           <div className="px-6 py-8 flex flex-col gap-5">
             {[
               { to: '/shop', label: 'Shop' },

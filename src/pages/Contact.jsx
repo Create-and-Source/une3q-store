@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
   return (
-    <div className="min-h-screen canvas-bg text-navy">
+    <div className="min-h-screen  text-navy">
       <div className="paint-divider" />
       <section className="relative z-10 max-w-4xl mx-auto px-6 py-20">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
@@ -13,7 +13,7 @@ export default function Contact() {
           <h1 className="font-display text-4xl md:text-6xl font-black mt-6">Contact Us</h1>
         </motion.div>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
-          <div className="card-painted-round rounded-[2rem] p-8 md:p-12">
+          <div className="card-canvas rounded-[2rem] p-8 md:p-12">
             {submitted ? (
               <div className="text-center py-8">
                 <div className="w-16 h-16 rounded-full icon-painted-lime flex items-center justify-center mx-auto mb-4">

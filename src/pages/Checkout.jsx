@@ -36,17 +36,17 @@ export default function Checkout() {
     } catch (err) { setError('Something went wrong. Please try again.'); console.error(err) } finally { setSubmitting(false) }
   }
 
-  if (items.length === 0) return <div className="min-h-screen canvas-bg flex items-center justify-center text-center px-6"><div className="relative z-10"><h2 className="text-3xl font-black text-navy mb-4">Nothing to checkout</h2><Link to="/shop" className="text-purple font-bold hover:underline">Go to Shop</Link></div></div>
+  if (items.length === 0) return <div className="min-h-screen  flex items-center justify-center text-center px-6"><div className="relative z-10"><h2 className="text-3xl font-black text-navy mb-4">Nothing to checkout</h2><Link to="/shop" className="text-purple font-bold hover:underline">Go to Shop</Link></div></div>
 
   return (
-    <div className="min-h-screen canvas-bg text-navy">
+    <div className="min-h-screen  text-navy">
       <div className="paint-divider" />
       <div className="relative z-10 max-w-6xl mx-auto px-6 py-10">
         <Link to="/cart" className="inline-flex items-center gap-1 text-purple font-bold mb-8 hover:underline"><ArrowLeft size={18} /> Back to Cart</Link>
         <h1 className="font-display text-4xl font-black mb-8">Checkout</h1>
         <form onSubmit={handleSubmit} className="grid lg:grid-cols-5 gap-8">
           <div className="lg:col-span-3 space-y-6">
-            <div className="card-painted-round rounded-[2rem] p-6 md:p-8">
+            <div className="card-canvas rounded-[2rem] p-6 md:p-8">
               <h2 className="text-xl font-black mb-4">Contact Information</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <input required value={form.firstName} onChange={e => set('firstName', e.target.value)} placeholder="First Name" className="input-painted" />
@@ -55,7 +55,7 @@ export default function Checkout() {
                 <input type="tel" value={form.phone} onChange={e => set('phone', e.target.value)} placeholder="Phone (optional)" className="input-painted md:col-span-2" />
               </div>
             </div>
-            <div className="card-painted-round rounded-[2rem] p-6 md:p-8">
+            <div className="card-canvas rounded-[2rem] p-6 md:p-8">
               <h2 className="text-xl font-black mb-4">Shipping Address</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <input required value={form.address} onChange={e => set('address', e.target.value)} placeholder="Street Address" className="input-painted md:col-span-2" />
@@ -65,25 +65,25 @@ export default function Checkout() {
                 <input required value={form.zip} onChange={e => set('zip', e.target.value)} placeholder="ZIP Code" pattern="[0-9]{5}" className="input-painted" />
               </div>
             </div>
-            <div className="card-painted-round rounded-[2rem] p-6 md:p-8">
+            <div className="card-canvas rounded-[2rem] p-6 md:p-8">
               <h2 className="text-xl font-black mb-4">Shipping Method</h2>
               {subtotal >= 75 && <p className="text-lime font-bold text-sm mb-3">Free standard shipping on orders $75+!</p>}
               <div className="space-y-3">
                 {SHIPPING_METHODS.map(method => (
-                  <label key={method.id} className={`flex items-center justify-between p-4 rounded-xl cursor-pointer transition-all ${form.shippingMethod === method.id ? 'card-painted-round ring-2 ring-purple' : 'card-painted-round'}`}>
+                  <label key={method.id} className={`flex items-center justify-between p-4 rounded-xl cursor-pointer transition-all ${form.shippingMethod === method.id ? 'card-canvas ring-2 ring-purple' : 'card-canvas'}`}>
                     <div className="flex items-center gap-3"><input type="radio" name="shipping" value={method.id} checked={form.shippingMethod === method.id} onChange={e => set('shippingMethod', e.target.value)} className="accent-purple" /><span className="font-bold">{method.label}</span></div>
                     <span className="font-black">{subtotal >= 75 && method.id === 'standard' ? <span className="text-lime">FREE</span> : `$${method.price.toFixed(2)}`}</span>
                   </label>
                 ))}
               </div>
             </div>
-            <div className="card-painted-round rounded-[2rem] p-6 md:p-8">
+            <div className="card-canvas rounded-[2rem] p-6 md:p-8">
               <h2 className="text-xl font-black mb-4">Order Notes (optional)</h2>
               <textarea value={form.notes} onChange={e => set('notes', e.target.value)} placeholder="Special instructions..." className="input-painted w-full h-28" />
             </div>
           </div>
           <div className="lg:col-span-2">
-            <div className="card-painted-round rounded-[2rem] p-6 md:p-8 sticky top-24">
+            <div className="card-canvas rounded-[2rem] p-6 md:p-8 sticky top-24">
               <h2 className="text-xl font-black mb-6">Order Summary</h2>
               <div className="space-y-3 mb-6">
                 {items.map(item => (
