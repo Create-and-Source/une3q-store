@@ -7,7 +7,7 @@ export default function OrderConfirmation() {
 
   return (
     <div className="min-h-screen canvas-bg text-navy flex items-center justify-center px-6 py-16">
-      <div className="max-w-lg w-full text-center">
+      <div className="relative z-10 max-w-lg w-full text-center">
         <div className="w-20 h-20 rounded-full icon-painted-lime flex items-center justify-center mx-auto mb-6">
           <CheckCircle2 size={40} className="text-navy" />
         </div>

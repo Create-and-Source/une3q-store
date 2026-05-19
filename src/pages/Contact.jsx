@@ -7,7 +7,7 @@ export default function Contact() {
   return (
     <div className="min-h-screen canvas-bg text-navy">
       <div className="paint-divider" />
-      <section className="max-w-4xl mx-auto px-6 py-20">
+      <section className="relative z-10 max-w-4xl mx-auto px-6 py-20">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
           <span className="badge-painted mb-4">Get in Touch</span>
           <h1 className="font-display text-4xl md:text-6xl font-black mt-6">Contact Us</h1>
@@ -16,7 +16,9 @@ export default function Contact() {
           <div className="card-painted-round rounded-[2rem] p-8 md:p-12">
             {submitted ? (
               <div className="text-center py-8">
-                <CheckCircle2 size={48} className="mx-auto mb-4 text-lime" />
+                <div className="w-16 h-16 rounded-full icon-painted-lime flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle2 size={32} className="text-navy" />
+                </div>
                 <h3 className="text-2xl font-black mb-2">Message Sent!</h3>
                 <p className="text-navy/50">We'll get back to you soon.</p>
               </div>
@@ -28,7 +30,7 @@ export default function Contact() {
                 </div>
                 <input required placeholder="Subject" className="input-painted w-full mb-4" />
                 <textarea required placeholder="Your message..." className="input-painted w-full h-36 mb-4" />
-                <button type="submit" className="w-full btn-painted-blue rounded-full py-4 font-black flex items-center justify-center gap-2 text-lg transition-all">
+                <button type="submit" className="w-full btn-painted-blue rounded-full py-4 font-black flex items-center justify-center gap-2 text-lg">
                   <Mail size={18} /> Send Message
                 </button>
               </form>

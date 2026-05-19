@@ -7,15 +7,15 @@ export default function Cart() {
 
   if (items.length === 0) return (
     <div className="min-h-screen canvas-bg flex items-center justify-center text-center px-6">
-      <div><ShoppingBag size={48} className="mx-auto mb-4 text-gold/30" /><h2 className="text-3xl font-black text-navy mb-4">Your cart is empty</h2>
-        <Link to="/shop" className="inline-flex items-center gap-2 btn-painted-purple px-8 py-4 rounded-full font-bold transition-all">Continue Shopping</Link></div>
+      <div className="relative z-10"><ShoppingBag size={48} className="mx-auto mb-4 text-gold/30" /><h2 className="text-3xl font-black text-navy mb-4">Your cart is empty</h2>
+        <Link to="/shop" className="inline-flex items-center gap-2 btn-painted-purple px-8 py-4 rounded-full font-bold">Continue Shopping</Link></div>
     </div>
   )
 
   return (
     <div className="min-h-screen canvas-bg text-navy">
       <div className="paint-divider" />
-      <div className="max-w-4xl mx-auto px-6 py-10">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 py-10">
         <Link to="/shop" className="inline-flex items-center gap-1 text-purple font-bold mb-8 hover:underline"><ArrowLeft size={18} /> Continue Shopping</Link>
         <h1 className="font-display text-4xl font-black mb-8">Your Cart ({itemCount})</h1>
         <div className="space-y-4 mb-8">
@@ -42,7 +42,7 @@ export default function Cart() {
           <div className="flex justify-between text-sm text-navy/40 mb-2"><span>Shipping</span><span>Calculated at checkout</span></div>
           <div className="flex justify-between text-sm text-navy/40 mb-6"><span>Tax</span><span>Calculated at checkout</span></div>
           <div className="border-t border-gold/20 pt-4 flex justify-between text-2xl font-black mb-6"><span>Estimated Total</span><span className="text-painted">${subtotal.toFixed(2)}</span></div>
-          <Link to="/checkout" className="block w-full btn-painted-purple text-center rounded-full py-4 font-black text-lg transition-all">Proceed to Checkout</Link>
+          <Link to="/checkout" className="block w-full btn-painted-purple text-center rounded-full py-4 font-black text-lg">Proceed to Checkout</Link>
         </div>
       </div>
     </div>

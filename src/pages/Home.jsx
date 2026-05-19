@@ -5,6 +5,17 @@ import { motion } from 'framer-motion'
 import { supabase } from '../lib/supabase'
 import { useCart } from '../lib/cart'
 
+/* Wavy paint edge between sections */
+function PaintEdge({ fill = '#f5efe4', flip = false, className = '' }) {
+  return (
+    <div className={`paint-edge relative z-20 ${flip ? 'rotate-180' : ''} ${className}`} style={{ marginTop: '-1px', marginBottom: '-1px' }}>
+      <svg viewBox="0 0 1440 70" preserveAspectRatio="none" style={{ height: '35px' }}>
+        <path d={`M0,0 C80,45 160,8 240,28 C320,52 400,5 480,32 C560,55 640,12 720,35 C800,58 880,8 960,22 C1040,42 1120,5 1200,28 C1280,52 1360,18 1440,35 L1440,70 L0,70 Z`} fill={fill} />
+      </svg>
+    </div>
+  )
+}
+
 export default function HomePage() {
   const [products, setProducts] = useState([])
   const [categories, setCategories] = useState([])
@@ -22,43 +33,49 @@ export default function HomePage() {
 
       {/* ===== HERO ===== */}
       <section className="hero-painted relative min-h-[90vh] flex items-center overflow-hidden">
-        {/* Painted splashes */}
-        <div className="absolute top-10 left-[5%] w-[300px] h-[200px] rounded-[60%_40%_50%_50%] rotate-[-15deg] opacity-40"
-          style={{ background: 'radial-gradient(ellipse, rgba(167,201,0,0.5) 0%, rgba(201,168,76,0.2) 40%, transparent 70%)' }} />
-        <div className="absolute bottom-20 right-[10%] w-[250px] h-[180px] rounded-[45%_55%_50%_50%] rotate-[10deg] opacity-30"
-          style={{ background: 'radial-gradient(ellipse, rgba(122,31,173,0.5) 0%, rgba(6,60,134,0.3) 40%, transparent 70%)' }} />
-        <div className="absolute top-[40%] right-[30%] w-[200px] h-[150px] rounded-[55%_45%_40%_60%] rotate-[-5deg] opacity-25"
-          style={{ background: 'radial-gradient(ellipse, rgba(201,168,76,0.5) 0%, transparent 60%)' }} />
+        {/* Paint blob splats — thick, bold color masses */}
+        <div className="paint-splat top-[5%] left-[3%] w-[350px] h-[250px] rotate-[-15deg] opacity-50"
+          style={{ background: 'radial-gradient(ellipse, rgba(167,201,0,0.6) 0%, rgba(167,201,0,0.2) 50%, transparent 70%)' }} />
+        <div className="paint-splat bottom-[10%] right-[5%] w-[300px] h-[220px] rotate-[10deg] opacity-40"
+          style={{ background: 'radial-gradient(ellipse, rgba(122,31,173,0.6) 0%, rgba(6,60,134,0.3) 40%, transparent 70%)' }} />
+        <div className="paint-splat top-[35%] right-[25%] w-[250px] h-[180px] rotate-[-5deg] opacity-35"
+          style={{ background: 'radial-gradient(ellipse, rgba(201,168,76,0.6) 0%, transparent 60%)' }} />
+        <div className="paint-splat bottom-[35%] left-[20%] w-[200px] h-[160px] rotate-[8deg] opacity-30"
+          style={{ background: 'radial-gradient(ellipse, rgba(6,60,134,0.5) 0%, rgba(122,31,173,0.2) 50%, transparent 70%)' }} />
+        <div className="paint-splat top-[60%] left-[45%] w-[180px] h-[130px] rotate-[-12deg] opacity-25"
+          style={{ background: 'radial-gradient(ellipse, rgba(167,201,0,0.4) 0%, transparent 60%)' }} />
 
-        {/* Gold speckle dots */}
-        <div className="absolute top-[15%] right-[20%] w-2 h-2 rounded-full bg-gold/50" />
-        <div className="absolute top-[25%] right-[35%] w-1.5 h-1.5 rounded-full bg-gold/40" />
-        <div className="absolute bottom-[30%] left-[15%] w-2.5 h-2.5 rounded-full bg-gold/45" />
-        <div className="absolute top-[60%] left-[40%] w-1 h-1 rounded-full bg-gold/50" />
-        <div className="absolute bottom-[20%] right-[45%] w-2 h-2 rounded-full bg-gold-light/30" />
+        {/* Gold paint speckles */}
+        <div className="absolute top-[12%] right-[18%] w-3 h-3 rounded-full bg-gold/60 blur-[1px]" />
+        <div className="absolute top-[22%] right-[32%] w-2 h-2 rounded-full bg-gold/50 blur-[1px]" />
+        <div className="absolute bottom-[28%] left-[12%] w-3.5 h-3.5 rounded-full bg-gold/55 blur-[1px]" />
+        <div className="absolute top-[55%] left-[38%] w-1.5 h-1.5 rounded-full bg-gold-light/50" />
+        <div className="absolute bottom-[18%] right-[42%] w-2.5 h-2.5 rounded-full bg-gold/45 blur-[1px]" />
+        <div className="absolute top-[8%] left-[50%] w-2 h-2 rounded-full bg-lime/30" />
+        <div className="absolute bottom-[45%] right-[15%] w-1.5 h-1.5 rounded-full bg-purple-light/40" />
 
-        <div className="relative max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-16 items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-16 items-center">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <div className="badge-painted mb-8">Art. Soul. Style.</div>
 
-            <h2 className="font-display text-5xl md:text-7xl lg:text-[5.5rem] font-black leading-[0.95] mb-8 text-white drop-shadow-lg">
+            <h2 className="font-display text-5xl md:text-7xl lg:text-[5.5rem] font-black leading-[0.95] mb-8 text-white" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.4), 0 4px 20px rgba(7,31,71,0.3)' }}>
               <span className="block">Creativity</span>
               <span className="block">is your</span>
               <span className="block brush-underline text-painted">superpower.</span>
             </h2>
 
-            <p className="font-script text-2xl md:text-3xl text-white/60 mb-4 rotate-[-1deg]">
+            <p className="font-script text-2xl md:text-3xl text-white/60 mb-4 rotate-[-1deg]" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.3)' }}>
               We just help you express it.
             </p>
-            <p className="text-lg text-white/50 mb-10 leading-relaxed max-w-lg">
+            <p className="text-lg text-white/50 mb-10 leading-relaxed max-w-lg" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.2)' }}>
               Unique arts, handmade jewelry, and home decor — made different, made by heart.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/shop" className="group btn-painted-blue px-8 py-4 rounded-full font-black text-center text-lg flex items-center justify-center gap-2 transition-all">
+              <Link to="/shop" className="group btn-painted-blue px-8 py-4 rounded-full font-black text-center text-lg flex items-center justify-center gap-2">
                 Shop Now <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link to="/custom" className="btn-painted-lime px-8 py-4 rounded-full font-black text-center text-lg transition-all">
+              <Link to="/custom" className="btn-painted-lime px-8 py-4 rounded-full font-black text-center text-lg">
                 Custom Piece
               </Link>
             </div>
@@ -89,7 +106,11 @@ export default function HomePage() {
                 })}
               </div>
 
-              <div className="rounded-2xl p-5" style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(243,234,219,0.8), rgba(245,239,228,0.6))', border: '1px solid rgba(201,168,76,0.3)' }}>
+              <div className="rounded-2xl p-5" style={{
+                backgroundColor: '#f3eadb',
+                backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23c)' opacity='0.05'/%3E%3C/svg%3E\")",
+                boxShadow: 'inset 0 0 0 2px rgba(201,168,76,0.3), inset 0 2px 4px rgba(0,0,0,0.05)'
+              }}>
                 <p className="font-script text-2xl text-navy/70 text-center leading-snug">
                   "Every piece tells a story. Yours. Uniquely <span className="text-painted font-bold">YOU</span>."
                 </p>
@@ -100,11 +121,13 @@ export default function HomePage() {
         <div className="absolute bottom-0 left-0 right-0 gold-line" />
       </section>
 
+      {/* Paint drip edge: hero → categories */}
+      <PaintEdge fill="#f5efe4" />
       <div className="paint-divider" />
 
       {/* ===== CATEGORIES ===== */}
       <section className="canvas-bg relative py-24 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
             <span className="badge-painted mb-4">Shop the Collection</span>
             <h2 className="font-display text-4xl md:text-6xl font-black text-navy mt-6">Browse by Category</h2>
@@ -138,20 +161,32 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Paint drip edge: categories → quote */}
+      <PaintEdge fill="#071f47" flip />
+
       {/* ===== QUOTE BANNER ===== */}
       <section className="painted-dark relative py-16 overflow-hidden">
-        <div className="max-w-4xl mx-auto px-6 text-center relative">
-          <p className="font-script text-4xl md:text-6xl text-white/90 leading-snug drop-shadow-lg">
+        {/* Paint splats in quote section */}
+        <div className="paint-splat top-[10%] left-[5%] w-[200px] h-[120px] rotate-[5deg] opacity-30"
+          style={{ background: 'radial-gradient(ellipse, rgba(167,201,0,0.4) 0%, transparent 60%)' }} />
+        <div className="paint-splat bottom-[10%] right-[8%] w-[180px] h-[140px] rotate-[-8deg] opacity-25"
+          style={{ background: 'radial-gradient(ellipse, rgba(122,31,173,0.4) 0%, transparent 60%)' }} />
+
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+          <p className="font-script text-4xl md:text-6xl text-white/90 leading-snug" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.3)' }}>
             "Creativity is your <span className="text-painted">superpower.</span><br />
             We just help you <span className="text-painted">express it.</span>"
           </p>
         </div>
       </section>
 
+      {/* Paint drip edge: quote → products */}
+      <PaintEdge fill="#f5efe4" />
+
       {/* ===== FEATURED PRODUCTS ===== */}
       {products.length > 0 && (
         <section className="canvas-bg relative py-24">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="relative z-10 max-w-7xl mx-auto px-6">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
               <span className="badge-painted mb-4">Featured</span>
               <h2 className="font-display text-4xl md:text-6xl font-black text-navy mt-6">Made with Heart</h2>
@@ -182,7 +217,7 @@ export default function HomePage() {
             </div>
 
             <div className="text-center mt-14">
-              <Link to="/shop" className="inline-flex items-center gap-2 btn-painted-purple px-8 py-4 rounded-full font-black text-lg transition-all">
+              <Link to="/shop" className="inline-flex items-center gap-2 btn-painted-purple px-8 py-4 rounded-full font-black text-lg">
                 <ShoppingBag size={20} /> View All Products
               </Link>
             </div>
@@ -192,7 +227,7 @@ export default function HomePage() {
 
       {products.length === 0 && (
         <section className="canvas-bg relative py-24">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="relative z-10 max-w-7xl mx-auto px-6">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
               <span className="badge-painted mb-4">Coming Soon</span>
               <h2 className="font-display text-4xl md:text-6xl font-black text-navy mt-6">Shop Opening Soon</h2>
@@ -220,30 +255,41 @@ export default function HomePage() {
         </section>
       )}
 
+      {/* Paint drip edge: products → CTA */}
+      <PaintEdge fill="#071f47" flip />
+
       {/* ===== CUSTOM CTA ===== */}
       <section className="hero-painted relative py-28 overflow-hidden">
-        <div className="max-w-5xl mx-auto relative text-center px-6">
+        {/* Paint splats */}
+        <div className="paint-splat top-[15%] right-[10%] w-[250px] h-[180px] rotate-[12deg] opacity-40"
+          style={{ background: 'radial-gradient(ellipse, rgba(167,201,0,0.5) 0%, transparent 65%)' }} />
+        <div className="paint-splat bottom-[20%] left-[8%] w-[220px] h-[160px] rotate-[-10deg] opacity-35"
+          style={{ background: 'radial-gradient(ellipse, rgba(201,168,76,0.5) 0%, transparent 60%)' }} />
+
+        <div className="relative z-10 max-w-5xl mx-auto text-center px-6">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <span className="badge-painted mb-6">Custom Made</span>
-            <h2 className="font-display text-4xl md:text-7xl font-black text-white mb-6 leading-tight mt-6 drop-shadow-lg">
+            <h2 className="font-display text-4xl md:text-7xl font-black text-white mb-6 leading-tight mt-6" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.4)' }}>
               Handmade with <span className="text-painted">passion.</span><br />
               Designed to <span className="text-painted">stand out.</span>
             </h2>
-            <p className="font-script text-2xl text-white/50 mb-10 rotate-[-1deg]">
+            <p className="font-script text-2xl text-white/50 mb-10 rotate-[-1deg]" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.3)' }}>
               One-on-one custom work — jewelry, wall art, gifts, and decor
             </p>
-            <Link to="/custom" className="inline-flex items-center gap-2 btn-painted-lime px-10 py-5 rounded-full font-black text-lg transition-all">
+            <Link to="/custom" className="inline-flex items-center gap-2 btn-painted-lime px-10 py-5 rounded-full font-black text-lg">
               Request a Custom Piece <ArrowRight size={20} />
             </Link>
           </motion.div>
         </div>
       </section>
 
+      {/* Paint drip edge: CTA → services */}
+      <PaintEdge fill="#f5efe4" />
       <div className="paint-divider" />
 
       {/* ===== SERVICES ===== */}
       <section className="canvas-bg relative py-24">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-3 gap-8">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <span className="badge-painted mb-4">Services</span>
@@ -264,10 +310,16 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Paint drip edge: services → tagline */}
+      <PaintEdge fill="#071f47" flip />
+
       {/* ===== BOTTOM TAGLINE ===== */}
       <section className="painted-dark relative py-16 overflow-hidden">
-        <div className="max-w-4xl mx-auto text-center px-6">
-          <p className="font-display text-3xl md:text-5xl font-black text-white leading-tight mb-6 drop-shadow-lg">
+        <div className="paint-splat top-[20%] left-[10%] w-[150px] h-[100px] rotate-[5deg] opacity-25"
+          style={{ background: 'radial-gradient(ellipse, rgba(167,201,0,0.4) 0%, transparent 60%)' }} />
+
+        <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
+          <p className="font-display text-3xl md:text-5xl font-black text-white leading-tight mb-6" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.3)' }}>
             Handmade with <span className="text-painted">passion.</span><br />
             Designed to <span className="text-painted">stand out.</span>
           </p>

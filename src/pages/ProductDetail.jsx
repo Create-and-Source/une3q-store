@@ -40,7 +40,7 @@ export default function ProductDetail() {
   return (
     <div className="min-h-screen canvas-bg text-navy">
       <div className="paint-divider" />
-      <div className="max-w-7xl mx-auto px-6 py-10">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-10">
         <Link to="/shop" className="inline-flex items-center gap-1 text-purple font-bold mb-8 hover:underline"><ChevronLeft size={18} /> Back to Shop</Link>
         <div className="grid md:grid-cols-2 gap-12">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
@@ -77,7 +77,7 @@ export default function ProductDetail() {
               {product.inventory_count > 0 && product.inventory_count <= 5 && <span className="text-sm font-bold text-orange-600">Only {product.inventory_count} left!</span>}
             </div>
             <button onClick={handleAdd}
-              className={`w-full flex items-center justify-center gap-2 rounded-full py-4 font-black text-lg transition-all ${added ? 'btn-painted-lime' : 'btn-painted-purple'}`}>
+              className={`w-full flex items-center justify-center gap-2 rounded-full py-4 font-black text-lg ${added ? 'btn-painted-lime' : 'btn-painted-purple'}`}>
               <ShoppingBag size={20} /> {added ? 'Added to Cart!' : 'Add to Cart'}
             </button>
             {product.weight_oz && <p className="text-sm text-navy/40 mt-4">Weight: {product.weight_oz} oz</p>}

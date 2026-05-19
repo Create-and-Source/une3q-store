@@ -18,14 +18,20 @@ export default function CustomOrders() {
   return (
     <div className="min-h-screen canvas-bg text-navy">
       <section className="hero-painted relative py-20 px-6 overflow-hidden">
-        <div className="max-w-6xl mx-auto relative grid md:grid-cols-2 gap-12 items-center">
+        {/* Paint splats */}
+        <div className="paint-splat top-[8%] left-[5%] w-[250px] h-[180px] rotate-[-12deg] opacity-45"
+          style={{ background: 'radial-gradient(ellipse, rgba(167,201,0,0.5) 0%, transparent 65%)' }} />
+        <div className="paint-splat bottom-[12%] right-[8%] w-[220px] h-[150px] rotate-[10deg] opacity-35"
+          style={{ background: 'radial-gradient(ellipse, rgba(201,168,76,0.5) 0%, transparent 60%)' }} />
+
+        <div className="relative z-10 max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <span className="badge-painted mb-4">Custom Made</span>
-            <h1 className="font-display text-4xl md:text-6xl font-black mb-6 leading-tight mt-4 text-white drop-shadow-lg">
+            <h1 className="font-display text-4xl md:text-6xl font-black mb-6 leading-tight mt-4 text-white" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.4)' }}>
               Made with <span className="text-painted">passion.</span><br />
               Designed to <span className="text-painted">stand out.</span>
             </h1>
-            <p className="font-script text-2xl text-white/50 mb-4 rotate-[-1deg]">One-on-one custom work that shows your individuality</p>
+            <p className="font-script text-2xl text-white/50 mb-4 rotate-[-1deg]" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.3)' }}>One-on-one custom work that shows your individuality</p>
             <div className="mt-8 grid grid-cols-3 gap-3">
               {[{ l: 'Handmade', i: Fingerprint, c: 'icon-painted-purple' }, { l: 'Heartfelt', i: Heart, c: 'icon-painted-blue' }, { l: 'One-of-a-Kind', i: Sun, c: 'icon-painted-lime' }].map(t => {
                 const I = t.i
@@ -38,7 +44,9 @@ export default function CustomOrders() {
             <div className="card-painted-round rounded-[2rem] p-8">
               {submitted ? (
                 <div className="text-center py-8">
-                  <CheckCircle2 size={48} className="mx-auto mb-4 text-lime" />
+                  <div className="w-16 h-16 rounded-full icon-painted-lime flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle2 size={32} className="text-navy" />
+                  </div>
                   <h3 className="text-2xl font-black mb-2">Request Sent!</h3>
                   <p className="text-navy/50">We'll be in touch within 24-48 hours.</p>
                 </div>
@@ -52,7 +60,7 @@ export default function CustomOrders() {
                       <option>Handmade Jewelry</option><option>Unique Art</option><option>Home Decor</option><option>Other Custom Piece</option>
                     </select>
                     <textarea required value={form.details} onChange={e => set('details', e.target.value)} className="input-painted w-full h-28" placeholder="Tell us what you want created..." />
-                    <button type="submit" disabled={submitting} className="w-full btn-painted-lime rounded-full py-4 font-black disabled:opacity-50 transition-all flex items-center justify-center gap-2 text-lg">
+                    <button type="submit" disabled={submitting} className="w-full btn-painted-lime rounded-full py-4 font-black disabled:opacity-50 flex items-center justify-center gap-2 text-lg">
                       {submitting ? 'Sending...' : 'Send Request'} {!submitting && <ArrowRight size={18} />}
                     </button>
                   </div>

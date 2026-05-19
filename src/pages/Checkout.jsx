@@ -36,12 +36,12 @@ export default function Checkout() {
     } catch (err) { setError('Something went wrong. Please try again.'); console.error(err) } finally { setSubmitting(false) }
   }
 
-  if (items.length === 0) return <div className="min-h-screen canvas-bg flex items-center justify-center text-center px-6"><div><h2 className="text-3xl font-black text-navy mb-4">Nothing to checkout</h2><Link to="/shop" className="text-purple font-bold hover:underline">Go to Shop</Link></div></div>
+  if (items.length === 0) return <div className="min-h-screen canvas-bg flex items-center justify-center text-center px-6"><div className="relative z-10"><h2 className="text-3xl font-black text-navy mb-4">Nothing to checkout</h2><Link to="/shop" className="text-purple font-bold hover:underline">Go to Shop</Link></div></div>
 
   return (
     <div className="min-h-screen canvas-bg text-navy">
       <div className="paint-divider" />
-      <div className="max-w-6xl mx-auto px-6 py-10">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 py-10">
         <Link to="/cart" className="inline-flex items-center gap-1 text-purple font-bold mb-8 hover:underline"><ArrowLeft size={18} /> Back to Cart</Link>
         <h1 className="font-display text-4xl font-black mb-8">Checkout</h1>
         <form onSubmit={handleSubmit} className="grid lg:grid-cols-5 gap-8">
@@ -101,7 +101,7 @@ export default function Checkout() {
               </div>
               <div className="border-t border-gold/20 pt-4 flex justify-between text-xl font-black mb-6"><span>Total</span><span className="text-painted">${total.toFixed(2)}</span></div>
               {error && <p className="text-red-600 font-bold text-sm mb-4">{error}</p>}
-              <button type="submit" disabled={submitting} className="w-full btn-painted-purple rounded-full py-4 font-black text-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50"><Lock size={18} /> {submitting ? 'Processing...' : 'Place Order'}</button>
+              <button type="submit" disabled={submitting} className="w-full btn-painted-purple rounded-full py-4 font-black text-lg flex items-center justify-center gap-2 disabled:opacity-50"><Lock size={18} /> {submitting ? 'Processing...' : 'Place Order'}</button>
               <p className="text-xs text-center text-navy/40 mt-3">Payment processing coming soon. Orders are recorded and you will be contacted for payment.</p>
             </div>
           </div>
