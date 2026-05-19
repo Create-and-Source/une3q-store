@@ -65,7 +65,7 @@ export default function ProductDetail() {
             <h1 className="font-display text-4xl md:text-5xl font-black mb-6">{product.name}</h1>
             <div className="flex items-center gap-3 mb-6">
               <span className="text-3xl font-black text-painted">${Number(product.price).toFixed(2)}</span>
-              {product.compare_at_price && <span className="text-xl text-navy/30 line-through">${Number(product.compare_at_price).toFixed(2)}</span>}
+              {product.compare_at_price && <span className="text-xl text-navy/60 line-through">${Number(product.compare_at_price).toFixed(2)}</span>}
             </div>
             {product.description && <p className="text-navy/60 text-lg leading-relaxed mb-8">{product.description}</p>}
             <div className="flex items-center gap-4 mb-6">
@@ -80,7 +80,7 @@ export default function ProductDetail() {
               className={`w-full flex items-center justify-center gap-2 rounded-full py-4 font-black text-lg ${added ? 'btn-painted-lime' : 'btn-painted-purple'}`}>
               <ShoppingBag size={20} /> {added ? 'Added to Cart!' : 'Add to Cart'}
             </button>
-            {product.weight_oz && <p className="text-sm text-navy/40 mt-4">Weight: {product.weight_oz} oz</p>}
+            {product.weight_oz && <p className="text-sm text-navy/70 mt-4">Weight: {product.weight_oz} oz</p>}
             <div className="mt-8 pt-8 border-t border-gold/20">
               <div className="grid grid-cols-3 gap-3">
                 {[{ l: 'Handmade', i: Fingerprint, c: 'icon-painted-purple' }, { l: 'One-of-a-Kind', i: Heart, c: 'icon-painted-blue' }, { l: 'Made by Heart', i: Sun, c: 'icon-painted-lime' }].map(t => {

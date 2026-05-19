@@ -20,7 +20,7 @@ export default function Contact() {
                   <CheckCircle2 size={32} className="text-navy" />
                 </div>
                 <h3 className="text-2xl font-black mb-2">Message Sent!</h3>
-                <p className="text-navy/50">We'll get back to you soon.</p>
+                <p className="text-navy/70">We'll get back to you soon.</p>
               </div>
             ) : (
               <form onSubmit={e => { e.preventDefault(); setSubmitted(true) }}>

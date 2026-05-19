@@ -12,7 +12,7 @@ export default function About() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <span className="badge-painted mb-4">About</span>
             <h1 className="font-display text-5xl md:text-7xl font-black mt-6 text-white" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>UNE3Q</h1>
-            <p className="text-xl text-white/50 leading-relaxed max-w-2xl mx-auto mt-6" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>A creative studio dedicated to crafting unique, handmade pieces that celebrate individuality and self-expression.</p>
+            <p className="text-xl text-white/90 leading-relaxed max-w-2xl mx-auto mt-6" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>A creative studio dedicated to crafting unique, handmade pieces that celebrate individuality and self-expression.</p>
           </motion.div>
         </div>
       </section>
@@ -39,7 +39,7 @@ export default function About() {
                     <Icon size={28} className={i === 2 ? 'text-navy' : 'text-white'} />
                   </div>
                   <h3 className="text-2xl font-black mb-3">{item.title}</h3>
-                  <p className="text-navy/50 leading-relaxed">{item.desc}</p>
+                  <p className="text-navy/70 leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
             )
@@ -49,7 +49,7 @@ export default function About() {
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <div className="card-painted-round rounded-[2rem] p-8 md:p-12">
             <h2 className="font-display text-3xl font-black mb-6">Our Story</h2>
-            <div className="text-navy/60 text-lg leading-relaxed space-y-5">
+            <div className="text-navy/80 text-lg leading-relaxed space-y-5">
               <p>UNE3Q started from a simple belief: the things you surround yourself with should be as unique as you are. No mass production. No cookie-cutter designs. Just real art, made by hand, made by heart.</p>
               <p>From handmade jewelry to colorful wall art to home decor that makes a statement, everything we create is designed to help you express who you are. We believe creativity is a superpower, and we're here to help you wear it, display it, and live it.</p>
               <p>Whether you're shopping our collection or requesting a custom piece built just for you, you're getting something that no one else in the world has. That's the UNE3Q promise.</p>

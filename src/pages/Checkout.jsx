@@ -89,20 +89,20 @@ export default function Checkout() {
                 {items.map(item => (
                   <div key={item.id} className="flex items-center gap-3">
                     <div className="w-12 h-12 rounded-lg overflow-hidden bg-cream shrink-0">{item.image && <img src={item.image} alt="" className="w-full h-full object-cover" />}</div>
-                    <div className="flex-1 min-w-0"><p className="font-bold text-sm truncate">{item.name}</p><p className="text-xs text-navy/40">Qty: {item.quantity}</p></div>
+                    <div className="flex-1 min-w-0"><p className="font-bold text-sm truncate">{item.name}</p><p className="text-xs text-navy/70">Qty: {item.quantity}</p></div>
                     <p className="font-bold text-sm">${(item.price * item.quantity).toFixed(2)}</p>
                   </div>
                 ))}
               </div>
               <div className="border-t border-gold/20 pt-4 space-y-2 mb-4">
-                <div className="flex justify-between text-sm"><span className="text-navy/50">Subtotal</span><span className="font-bold">${subtotal.toFixed(2)}</span></div>
-                <div className="flex justify-between text-sm"><span className="text-navy/50">Shipping</span><span className="font-bold">{shippingCost === 0 ? <span className="text-lime">FREE</span> : `$${shippingCost.toFixed(2)}`}</span></div>
-                <div className="flex justify-between text-sm"><span className="text-navy/50">Tax (8%)</span><span className="font-bold">${tax.toFixed(2)}</span></div>
+                <div className="flex justify-between text-sm"><span className="text-navy/70">Subtotal</span><span className="font-bold">${subtotal.toFixed(2)}</span></div>
+                <div className="flex justify-between text-sm"><span className="text-navy/70">Shipping</span><span className="font-bold">{shippingCost === 0 ? <span className="text-lime">FREE</span> : `$${shippingCost.toFixed(2)}`}</span></div>
+                <div className="flex justify-between text-sm"><span className="text-navy/70">Tax (8%)</span><span className="font-bold">${tax.toFixed(2)}</span></div>
               </div>
               <div className="border-t border-gold/20 pt-4 flex justify-between text-xl font-black mb-6"><span>Total</span><span className="text-painted">${total.toFixed(2)}</span></div>
               {error && <p className="text-red-600 font-bold text-sm mb-4">{error}</p>}
               <button type="submit" disabled={submitting} className="w-full btn-painted-purple rounded-full py-4 font-black text-lg flex items-center justify-center gap-2 disabled:opacity-50"><Lock size={18} /> {submitting ? 'Processing...' : 'Place Order'}</button>
-              <p className="text-xs text-center text-navy/40 mt-3">Payment processing coming soon. Orders are recorded and you will be contacted for payment.</p>
+              <p className="text-xs text-center text-navy/70 mt-3">Payment processing coming soon. Orders are recorded and you will be contacted for payment.</p>
             </div>
           </div>
         </form>

@@ -65,10 +65,10 @@ export default function HomePage() {
               <span className="block brush-underline text-painted">superpower.</span>
             </h2>
 
-            <p className="font-script text-2xl md:text-3xl text-white/60 mb-4 rotate-[-1deg]" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>
+            <p className="font-script text-2xl md:text-3xl text-white mb-4 rotate-[-1deg]" style={{ textShadow: '0 2px 6px rgba(0,0,0,0.6)' }}>
               We just help you express it.
             </p>
-            <p className="text-lg text-white/50 mb-10 leading-relaxed max-w-lg" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>
+            <p className="text-lg text-white/90 mb-10 leading-relaxed max-w-lg" style={{ textShadow: '0 2px 6px rgba(0,0,0,0.5)' }}>
               Unique arts, handmade jewelry, and home decor — made different, made by heart.
             </p>
 
@@ -150,7 +150,7 @@ export default function HomePage() {
                       <Icon size={34} className={i === 2 ? 'text-navy' : 'text-white'} />
                     </div>
                     <h3 className="text-2xl font-black text-navy mb-3 group-hover:text-purple transition">{cat.name}</h3>
-                    <p className="text-navy/50 leading-relaxed">{cat.desc}</p>
+                    <p className="text-navy/70 leading-relaxed">{cat.desc}</p>
                     <div className="mt-6 inline-flex items-center gap-2 text-purple text-sm font-black uppercase tracking-wider opacity-0 group-hover:opacity-100 transition">
                       Explore <ArrowRight size={14} />
                     </div>
@@ -228,7 +228,7 @@ export default function HomePage() {
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
               <span className="badge-painted mb-4">Coming Soon</span>
               <h2 className="font-display text-4xl md:text-6xl font-black text-navy mt-6">Shop Opening Soon</h2>
-              <p className="mt-4 text-lg max-w-2xl mx-auto text-navy/50">Handmade jewelry, unique arts, and home decor — all made different, made by heart.</p>
+              <p className="mt-4 text-lg max-w-2xl mx-auto text-navy/70">Handmade jewelry, unique arts, and home decor — all made different, made by heart.</p>
             </motion.div>
             <div className="grid md:grid-cols-3 gap-8">
               {[
@@ -243,7 +243,7 @@ export default function HomePage() {
                       <Icon className={i === 2 ? 'text-navy' : 'text-white'} size={30} />
                     </div>
                     <h3 className="text-2xl font-black text-navy mb-3">{item.title}</h3>
-                    <p className="text-navy/50 leading-relaxed">Unique pieces crafted with soul and style.</p>
+                    <p className="text-navy/70 leading-relaxed">Unique pieces crafted with soul and style.</p>
                   </div>
                 )
               })}
@@ -266,7 +266,7 @@ export default function HomePage() {
               Handmade with <span className="text-painted">passion.</span><br />
               Designed to <span className="text-painted">stand out.</span>
             </h2>
-            <p className="font-script text-2xl text-white/50 mb-10 rotate-[-1deg]" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>
+            <p className="font-script text-2xl text-white mb-10 rotate-[-1deg]" style={{ textShadow: '0 2px 6px rgba(0,0,0,0.6)' }}>
               One-on-one custom work — jewelry, wall art, gifts, and decor
             </p>
             <Link to="/custom" className="inline-flex items-center gap-2 btn-painted-lime px-10 py-5 rounded-full font-black text-lg">
@@ -286,7 +286,7 @@ export default function HomePage() {
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <span className="badge-painted mb-4">Services</span>
               <h2 className="font-display text-4xl font-black text-navy mt-4 mb-4">More than a shop</h2>
-              <p className="text-navy/50 leading-relaxed">Full creative services to bring your vision to life.</p>
+              <p className="text-navy/70 leading-relaxed">Full creative services to bring your vision to life.</p>
             </motion.div>
             {['Personalized design consultations', 'Custom gift bundles', 'Art and decor commissions', 'Jewelry repair or redesign', 'Seasonal handmade collections', 'Local pickup or shipping'].map((service, i) => (
               <motion.div key={service} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
@@ -313,7 +313,7 @@ export default function HomePage() {
             Handmade with <span className="text-painted">passion.</span><br />
             Designed to <span className="text-painted">stand out.</span>
           </p>
-          <div className="flex items-center justify-center gap-6 md:gap-8 text-white/40 text-sm font-bold uppercase tracking-[0.25em]">
+          <div className="flex items-center justify-center gap-6 md:gap-8 text-white/80 text-sm font-bold uppercase tracking-[0.25em]">
             <span className="flex items-center gap-2"><Fingerprint size={16} className="text-purple-light" /> Handmade</span>
             <span className="text-gold text-lg">&bull;</span>
             <span className="flex items-center gap-2"><Heart size={16} className="text-purple-light" /> Heartfelt</span>

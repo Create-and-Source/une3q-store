@@ -28,7 +28,7 @@ export default function CustomOrders() {
               Made with <span className="text-painted">passion.</span><br />
               Designed to <span className="text-painted">stand out.</span>
             </h1>
-            <p className="font-script text-2xl text-white/50 mb-4 rotate-[-1deg]" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>One-on-one custom work that shows your individuality</p>
+            <p className="font-script text-2xl text-white/90 mb-4 rotate-[-1deg]" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>One-on-one custom work that shows your individuality</p>
             <div className="mt-8 grid grid-cols-3 gap-3">
               {[{ l: 'Handmade', i: Fingerprint, c: 'icon-painted-purple' }, { l: 'Heartfelt', i: Heart, c: 'icon-painted-blue' }, { l: 'One-of-a-Kind', i: Sun, c: 'icon-painted-lime' }].map(t => {
                 const I = t.i
@@ -45,7 +45,7 @@ export default function CustomOrders() {
                     <CheckCircle2 size={32} className="text-navy" />
                   </div>
                   <h3 className="text-2xl font-black mb-2">Request Sent!</h3>
-                  <p className="text-navy/50">We'll be in touch within 24-48 hours.</p>
+                  <p className="text-navy/70">We'll be in touch within 24-48 hours.</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit}>

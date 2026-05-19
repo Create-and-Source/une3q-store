@@ -295,7 +295,7 @@ body {
   transition: all 0.3s;
   box-shadow: inset 0 2px 4px rgba(0,0,0,0.04);
 }
-.input-painted::placeholder { color: rgba(7,31,71,0.3); }
+.input-painted::placeholder { color: rgba(7,31,71,0.5); }
 .input-painted:focus {
   outline: none;
   border-color: rgba(122,31,173,0.5);

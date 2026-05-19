@@ -78,7 +78,7 @@ export default function Shop() {
           <div className="text-center py-20">
             <Gem size={48} className="mx-auto mb-4 text-gold/30" />
             <h3 className="text-2xl font-black mb-2">No products yet</h3>
-            <p className="text-navy/50">New items are being added soon.</p>
+            <p className="text-navy/70">New items are being added soon.</p>
           </div>
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -103,7 +103,7 @@ export default function Shop() {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <span className="text-lg font-bold">${Number(product.price).toFixed(2)}</span>
-                          {product.compare_at_price && <span className="text-sm text-navy/30 line-through">${Number(product.compare_at_price).toFixed(2)}</span>}
+                          {product.compare_at_price && <span className="text-sm text-navy/60 line-through">${Number(product.compare_at_price).toFixed(2)}</span>}
                         </div>
                         <button onClick={() => addItem({ id: product.id, name: product.name, price: Number(product.price), image: img })}
                           className="btn-painted-purple rounded-full px-4 py-2 font-bold text-sm">

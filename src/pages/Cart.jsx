@@ -39,8 +39,8 @@ export default function Cart() {
         </div>
         <div className="card-painted-round rounded-[2rem] p-8">
           <div className="flex justify-between text-lg mb-2"><span className="text-navy/60">Subtotal</span><span className="font-black">${subtotal.toFixed(2)}</span></div>
-          <div className="flex justify-between text-sm text-navy/40 mb-2"><span>Shipping</span><span>Calculated at checkout</span></div>
-          <div className="flex justify-between text-sm text-navy/40 mb-6"><span>Tax</span><span>Calculated at checkout</span></div>
+          <div className="flex justify-between text-sm text-navy/70 mb-2"><span>Shipping</span><span>Calculated at checkout</span></div>
+          <div className="flex justify-between text-sm text-navy/70 mb-6"><span>Tax</span><span>Calculated at checkout</span></div>
           <div className="border-t border-gold/20 pt-4 flex justify-between text-2xl font-black mb-6"><span>Estimated Total</span><span className="text-painted">${subtotal.toFixed(2)}</span></div>
           <Link to="/checkout" className="block w-full btn-painted-purple text-center rounded-full py-4 font-black text-lg">Proceed to Checkout</Link>
         </div>
