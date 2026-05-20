@@ -21,7 +21,7 @@ export default function Nav() {
             {[
               { to: '/shop', label: 'Shop' },
               { to: '/custom', label: 'Custom Orders' },
-              { to: '/about', label: 'About' },
+              { to: '/about', label: 'Our Vision' },
               { to: '/contact', label: 'Contact' },
             ].map(link => (
               <Link key={link.to} to={link.to}
@@ -59,7 +59,7 @@ export default function Nav() {
             {[
               { to: '/shop', label: 'Shop' },
               { to: '/custom', label: 'Custom Orders' },
-              { to: '/about', label: 'About' },
+              { to: '/about', label: 'Our Vision' },
               { to: '/contact', label: 'Contact' },
             ].map(link => (
               <Link key={link.to} to={link.to} onClick={() => setOpen(false)}

@@ -35,7 +35,7 @@ export default function Footer() {
             <div className="flex flex-col gap-2 text-white/80 text-sm">
               <Link to="/shop" className="hover:text-lime transition">Shop</Link>
               <Link to="/custom" className="hover:text-lime transition">Custom Orders</Link>
-              <Link to="/about" className="hover:text-lime transition">About</Link>
+              <Link to="/about" className="hover:text-lime transition">Our Vision</Link>
               <Link to="/contact" className="hover:text-lime transition">Contact</Link>
             </div>
           </div>
