@@ -196,36 +196,6 @@ export default function HomePage() {
         </section>
       )}
 
-      {products.length === 0 && (
-        <section className="relative py-24 px-6 overflow-hidden">
-          <div className="wash-blue" style={{ top: '-10%', left: '-15%' }} />
-          <div className="relative z-10 max-w-7xl mx-auto">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-              <span className="badge-painted mb-4">Coming Soon</span>
-              <h2 className="font-display text-4xl md:text-6xl font-black text-navy mt-6">Shop Opening <span className="brush-under">Soon</span></h2>
-              <p className="mt-6 text-lg max-w-2xl mx-auto text-navy/60">Handmade jewelry, unique arts, and home decor — all made different, made by heart.</p>
-            </motion.div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                { title: 'Handmade Jewelry', icon: Gem, cls: 'icon-painted-purple' },
-                { title: 'Unique Arts', icon: Palette, cls: 'icon-painted-blue' },
-                { title: 'Home Decor', icon: HomeIcon, cls: 'icon-painted-lime' },
-              ].map((item, i) => {
-                const Icon = item.icon
-                return (
-                  <div key={item.title} className="card-canvas rounded-[2rem] p-8">
-                    <div className={`w-16 h-16 rounded-full ${item.cls} flex items-center justify-center mb-6`}>
-                      <Icon className={i === 2 ? 'text-navy' : 'text-white'} size={30} />
-                    </div>
-                    <h3 className="text-2xl font-black text-navy mb-3">{item.title}</h3>
-                    <p className="text-navy/60 leading-relaxed">Unique pieces crafted with soul and style.</p>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-      )}
 
       <div className="max-w-7xl mx-auto px-6"><div className="paint-divider" /></div>
 
