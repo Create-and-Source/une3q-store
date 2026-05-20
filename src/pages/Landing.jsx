@@ -1,5 +1,8 @@
 import React, { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { ShoppingBag, Menu, X } from "lucide-react";
+import { useCart } from "../lib/cart";
 
 const initialBotMessage =
   "Hi, I’m your UNE3Q guide. Looking for custom jewelry, wall art, home décor, or a one-of-a-kind gift?";
@@ -143,6 +146,15 @@ export default function UNE3QLandingPage() {
   const [chatOpen, setChatOpen] = useState(true);
   const [messages, setMessages] = useState([{ from: "bot", text: initialBotMessage }]);
   const [input, setInput] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { itemCount } = useCart();
+
+  const navLinks = [
+    { to: "/shop", label: "Shop" },
+    { to: "/custom", label: "Custom Orders" },
+    { to: "/about", label: "Our Vision" },
+    { to: "/contact", label: "Contact" },
+  ];
 
   const quickReplies = useMemo(
     () => ["Custom jewelry", "Unique wall art", "Home décor", "Gift ideas"],
@@ -173,7 +185,7 @@ export default function UNE3QLandingPage() {
       <div className="absolute inset-0 opacity-25" style={{ backgroundImage: "linear-gradient(120deg, transparent 0 45%, rgba(255,215,110,.35) 45% 46%, transparent 46% 100%)" }} />
 
       <header className="relative z-10 flex items-center justify-between px-6 py-5 md:px-12">
-        <div className="flex items-center gap-3">
+        <Link to="/" className="flex items-center gap-3">
           <div className="grid h-12 w-12 place-items-center rounded-2xl bg-lime-400 text-2xl font-black text-blue-950 shadow-lg shadow-lime-400/30">U</div>
           <div>
             <p className="text-2xl font-black tracking-tight">
@@ -181,9 +193,44 @@ export default function UNE3QLandingPage() {
             </p>
             <p className="text-xs uppercase tracking-[.25em] text-white/70">Be you, Be UNE3Q</p>
           </div>
-        </div>
-        <a href="#start" className="rounded-full border border-white/25 bg-white/10 px-5 py-3 text-sm font-bold backdrop-blur transition hover:bg-white/20">Start a Custom Piece</a>
+        </Link>
+
+        <nav className="hidden md:flex items-center gap-6">
+          {navLinks.map((link) => (
+            <Link key={link.to} to={link.to} className="text-sm font-bold uppercase tracking-wider text-white/80 transition hover:text-lime-300">
+              {link.label}
+            </Link>
+          ))}
+          <Link to="/cart" className="relative flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 py-3 text-sm font-bold backdrop-blur transition hover:bg-white/20">
+            <ShoppingBag size={18} /> Cart
+            {itemCount > 0 && (
+              <span className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-lime-400 text-xs font-black text-blue-950">{itemCount}</span>
+            )}
+          </Link>
+        </nav>
+
+        <button className="md:hidden relative text-white" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+          {menuOpen ? <X size={28} /> : <Menu size={28} />}
+          {itemCount > 0 && !menuOpen && (
+            <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-lime-400 text-xs font-black text-blue-950">{itemCount}</span>
+          )}
+        </button>
       </header>
+
+      {menuOpen && (
+        <div className="fixed inset-0 top-[76px] z-40 bg-[#081b58]/95 backdrop-blur-xl md:hidden">
+          <div className="flex flex-col gap-5 px-6 py-8">
+            {navLinks.map((link) => (
+              <Link key={link.to} to={link.to} onClick={() => setMenuOpen(false)} className="text-2xl font-black text-white hover:text-lime-300 transition border-b border-white/10 pb-4">
+                {link.label}
+              </Link>
+            ))}
+            <Link to="/cart" onClick={() => setMenuOpen(false)} className="flex items-center gap-3 text-2xl font-black text-lime-300">
+              <ShoppingBag size={24} /> Cart ({itemCount})
+            </Link>
+          </div>
+        </div>
+      )}
 
       <main className="relative z-10 grid min-h-[calc(100vh-88px)] items-center gap-10 px-6 pb-24 pt-8 md:grid-cols-2 md:px-12 lg:px-20">
         <motion.section initial={{ opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="max-w-3xl">
