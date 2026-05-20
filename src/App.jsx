@@ -5,6 +5,7 @@ import { CartProvider } from './lib/cart'
 import Nav from './components/Nav'
 import SEO from './components/SEO'
 import Footer from './components/Footer'
+import Landing from './pages/Landing'
 import Home from './pages/Home'
 import Shop from './pages/Shop'
 import ProductDetail from './pages/ProductDetail'
@@ -51,14 +52,18 @@ function RequireAuth({ children }) {
 }
 
 export default function App() {
+  const { pathname } = useLocation()
+  const isLanding = pathname === '/'
+
   return (
     <CartProvider>
       <ScrollToTop />
       <SEO />
-      <Nav />
+      {!isLanding && <Nav />}
       <Routes>
         {/* Storefront */}
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/product/:slug" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
@@ -90,7 +95,7 @@ export default function App() {
           </div>
         } />
       </Routes>
-      <Footer />
+      {!isLanding && <Footer />}
     </CartProvider>
   )
 }
