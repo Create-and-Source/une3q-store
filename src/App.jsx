@@ -3,6 +3,7 @@ import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { supabase } from './lib/supabase'
 import { CartProvider } from './lib/cart'
 import Nav from './components/Nav'
+import SEO from './components/SEO'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import Shop from './pages/Shop'
@@ -53,6 +54,7 @@ export default function App() {
   return (
     <CartProvider>
       <ScrollToTop />
+      <SEO />
       <Nav />
       <Routes>
         {/* Storefront */}

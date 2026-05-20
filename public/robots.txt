@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /checkout
+Disallow: /order-confirmation
+
+Sitemap: https://une3q-store.vercel.app/sitemap.xml
